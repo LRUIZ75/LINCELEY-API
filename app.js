@@ -20,17 +20,21 @@ var rootRoutes = require('./routes/root.routes');
 //TODO: Luego de generar código por plantillas CodeSmith:
 //Añadir manualmente los requires para nuevas rutas parciales
 
-//var personRoutes = require('./routes/person.routes');
-//var generalsettingRoutes = require('./routes/generalsetting.routes');
-//var driverRoutes = require('./routes/driver.routes');
-//var vehicleRoutes = require('./routes/vehicle.routes');
+var personRoutes = require('./routes/person.routes');
+var roleRoutes = require('./routes/role.routes');
+var roleActionRoutes = require('./routes/roleAction.routes');
+var userRoutes = require('./routes/user.routes');
+var claimRoutes = require('./routes/claim.routes');
+var companyRoutes = require ('./routes/company.routes');
 
 var apiRoutes = [
-  rootRoutes
-  //generalsettingRoutes,
-  //personRoutes,
-  //driverRoutes,
-  //vehicleRoutes
+  rootRoutes,  
+  personRoutes,
+  roleRoutes,
+  roleActionRoutes,
+  userRoutes,
+  claimRoutes,
+  companyRoutes
 ];
 
 
