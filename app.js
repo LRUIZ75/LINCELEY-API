@@ -22,7 +22,7 @@ var rootRoutes = require('./routes/root.routes');
 
 var personRoutes = require('./routes/person.routes');
 var roleRoutes = require('./routes/role.routes');
-var roleActionRoutes = require('./routes/roleAction.routes');
+var roleActionRoutes = require('./routes/roleaction.routes');
 var userRoutes = require('./routes/user.routes');
 var claimRoutes = require('./routes/claim.routes');
 var companyRoutes = require ('./routes/company.routes');
