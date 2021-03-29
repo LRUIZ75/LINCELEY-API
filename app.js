@@ -22,14 +22,15 @@ var rootRoutes = require('./routes/root.routes');
 
 var personRoutes = require('./routes/person.routes');
 var roleRoutes = require('./routes/role.routes');
-//var driverRoutes = require('./routes/driver.routes');
-//var vehicleRoutes = require('./routes/vehicle.routes');
+var roleActionRoutes = require('./routes/roleAction.routes');
+var userRoutes = require('./routes/user.routes');
 
 var apiRoutes = [
   rootRoutes,  
   personRoutes,
-  roleRoutes
-  //vehicleRoutes
+  roleRoutes,
+  roleActionRoutes,
+  userRoutes
 ];
 
 

@@ -6,17 +6,13 @@ const validator = require('validator');
 const Schema = mongoose.Schema;
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
-const PersonSchema = Schema({
+const RoleActionSchema = Schema({
     names:
       { type: String },
-    lastnames:
-      { type: String },
-    personalId:
-      { type:String },
-    picture:
-      { type:String },
-    mobileNumber:
-      { type:String }
+    role:
+      { type: mongoose.Schema.ObjectId },
+    isActive:
+      { type: Boolean }
     
 });
 
@@ -25,21 +21,17 @@ const PersonSchema = Schema({
  * @swagger
  * components:
  *   schemas:
- *     Person:
+ *     RoleAction:
  *       properties: 
  *         names:
  *           type: "string"
- *         lastnames:
- *           type: "string"
- *         personalId:
- *           type: "string"
- *         picture:
- *           type: "string"
- *         mobileNumber:
- *           type: "string"
+ *         role:
+ *           type: "mongoose.schema.objectid"
+ *         isActive:
+ *           type: "boolean"
  *
  */
 
-module.exports = mongoose.model('Person',PersonSchema);
+module.exports = mongoose.model('RoleAction',RoleActionSchema);
 // mongoDB creará la collección, con documentos de estructura del modelo.
 
