@@ -29,7 +29,8 @@ var uriMongoDB = 'mongodb://localhost:27017/linceley';
 
 if(process.env.NODE_ENV == 'production'){
   //Esta URL cuando el proyecto tenga un cluster en Mongodb Atlas debe ser camabiada a la correcta
-  uriMongoDB = 'mongodb+srv://admin:anunaki75@<projectname>.jjrrf.mongodb.net/<dbname>?retryWrites=true&w=majority';
+  //admin:iVdVNpQh2lFNDNSu
+  uriMongoDB = 'mongodb+srv://admin:iVdVNpQh2lFNDNSu@cluster0.9rxic.mongodb.net/linceley?retryWrites=true&w=majority';
   }
   
 
