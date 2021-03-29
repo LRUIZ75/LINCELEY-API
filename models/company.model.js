@@ -2,26 +2,31 @@
 
 const mongoose = require('mongoose');
 const validator = require('validator');
-
+const location = require('./location.model');
 const Schema = mongoose.Schema;
 
+
+
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
-const RoleActionSchema = Schema({
-    names:
+const CompanySchema = Schema({
+    fullName:
       { 
         type: String,
-        trim:true,
         required: [true,"Este campo es requerido"] 
       },
-    role:
+    shortName:
       { 
-        type: mongoose.Schema.ObjectId,
-        required: [true,"Este campo es requerido"]
+        type:String,
+        required: [true,"Este campo es requerido"] 
       },
     isActive:
       { 
-        type: Boolean,
+        type:Boolean,
         default: true
+      },
+    location:
+      { 
+        type: {location}
       }
     
 });
@@ -31,19 +36,19 @@ const RoleActionSchema = Schema({
  * @swagger
  * components:
  *   schemas:
- *     RoleAction:
+ *     Company:
  *       properties: 
- *         names:
+ *         fullName:
  *           type: "string"
- *         role:
- *           type: "mongoose.schema.objectid"
+ *         shortName:
+ *           type: "string"
  *         isActive:
  *           type: "boolean"
- *       required:
- *         - names
- *         - role
+ *         location:
+ *           type: "object"
+ *
  */
 
-module.exports = mongoose.model('RoleAction',RoleActionSchema);
+module.exports = mongoose.model('Company',CompanySchema);
 // mongoDB creará la collección, con documentos de estructura del modelo.
 

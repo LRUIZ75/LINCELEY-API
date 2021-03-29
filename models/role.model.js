@@ -7,13 +7,16 @@ const Schema = mongoose.Schema;
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 const RoleSchema = Schema({
-    names:
-      { type: String },
-    isActive:
-      { type: Boolean },
-    description:
-      { type:String }
-    
+  name: {
+    type: String,
+    required: [true,"Este campo es requerido"]    
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  description:
+    { type: String }
 });
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
@@ -23,15 +26,16 @@ const RoleSchema = Schema({
  *   schemas:
  *     Role:
  *       properties: 
- *         names:
- *           type: "string"
+ *         name:
+ *           type: "string"           
  *         isActive:
  *           type: "boolean"
  *         description:
  *           type: "string"
- *
+ *       required: 
+ *         - name
  */
 
-module.exports = mongoose.model('Role',RoleSchema);
+module.exports = mongoose.model('Role', RoleSchema);
 // mongoDB creará la collección, con documentos de estructura del modelo.
 

@@ -8,21 +8,47 @@ const Schema = mongoose.Schema;
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 const UserSchema = Schema({
     name:
-      { type: String },
+      { 
+        type: String, 
+        minlength: 5,
+        maxlength: 12,
+        match: "[A-Za-z][A-Za-z0-9]+",
+        trim:true,
+        required: [true,"Este campo es requerido"]
+      },
     email:
-      { type: String },
+      { 
+        type: String,
+        trim:true,
+        required: [true,"Este campo es requerido"]
+      },
     salt:
       { type: String },
     password:
-      { type:String },
+      { 
+        type:String,
+        minlength: 6,
+        maxlength: 10,
+        trim:true,
+        required: [true,"Este campo es requerido"] 
+      },
     emailverified:
-      { type:Boolean },
+      { 
+        type:Boolean,
+        default: false
+      },
     isActive:
-      { type:Boolean },
+      { 
+        type:Boolean,
+        default: true 
+      },
     roles:
       {type: [mongoose.Schema.ObjectId]},
     person:
-      { type:mongoose.Schema.ObjectId }
+      { 
+        type:mongoose.Schema.ObjectId,
+        required: [true,"Este campo es Requerido"]
+      }
     
 });
 
@@ -51,6 +77,11 @@ const UserSchema = Schema({
  *             type: "string"
  *         person:
  *           type: "string"
+ *       required:
+ *         - name
+ *         - email
+ *         - password
+ *         - person         
  */
 
 module.exports = mongoose.model('User',UserSchema);
