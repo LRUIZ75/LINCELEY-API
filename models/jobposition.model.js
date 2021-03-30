@@ -12,7 +12,7 @@ const JobPositionSchema = Schema({
         type: String,
         minlength: 5,
         maxlength: 12,
-        match: "[A-Za-z][A-Za-z0-9]+",
+        //match: "[A-Za-z][A-Za-z0-9]+",
         required: [true,"Este campo es requerido"]
       },
     company:

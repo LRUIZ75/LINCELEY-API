@@ -11,7 +11,7 @@ const PersonSchema = Schema({
       { 
         type: String,
         minlength: 2,
-        match: "[A-Za-z ]+",
+        //match: "[A-Za-z ]+",
         trim: true,
         required: [true,"Este campo es requerido"]
       },
@@ -19,7 +19,7 @@ const PersonSchema = Schema({
       { 
         type: String,
         minlength: 2,
-        match: "[A-Za-z ]+", 
+        //match: "[A-Za-z ]+", 
         trim: true,
         required: [true,"Este campo es requerido"] 
       },

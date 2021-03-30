@@ -27,9 +27,9 @@ router.put('/user/:id',  userController.editUser); //UPDATE
 
 router.get('/user/:id?', userController.getUser); //RETRIEVE
 router.get('/user',  userController.getUser); //RETRIEVE
+router.delete('/user/:id',  userController.deactivateUser); //DEATIVATE
 
-
-router.delete('/user/:id',  userController.deleteUser); //DELETE
+//router.delete('/user/:id',  userController.deleteUser); //DELETE
 
 
 module.exports = router;

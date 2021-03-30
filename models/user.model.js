@@ -10,9 +10,9 @@ const UserSchema = Schema({
     name:
       { 
         type: String, 
-        minlength: 5,
-        maxlength: 12,
-        match: "[A-Za-z][A-Za-z0-9]+",
+        minlength: 4,
+        maxlength: 20,
+        //match: "//([A-Z]|[a-z])[A-Za-z0-9]+//",
         trim:true,
         required: [true,"Este campo es requerido"]
       },
