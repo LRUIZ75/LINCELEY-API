@@ -26,6 +26,7 @@ var roleActionRoutes = require('./routes/roleaction.routes');
 var userRoutes = require('./routes/user.routes');
 var claimRoutes = require('./routes/claim.routes');
 var companyRoutes = require ('./routes/company.routes');
+var departamentRoutes = require ('./routes/departament.routes');
 
 var apiRoutes = [
   rootRoutes,  
@@ -34,7 +35,8 @@ var apiRoutes = [
   roleActionRoutes,
   userRoutes,
   claimRoutes,
-  companyRoutes
+  companyRoutes,
+  departamentRoutes
 ];
 
 
