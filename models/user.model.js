@@ -11,8 +11,15 @@ const UserSchema = Schema({
       { 
         type: String, 
         minlength: 4,
-        maxlength: 20,
-        //match: "//([A-Z]|[a-z])[A-Za-z0-9]+//",
+        maxlength: 20,        
+        validate: 
+        {
+          validator: function(v) 
+          {
+              return /^([A-Z]|[a-z])[A-Za-z0-9]+$/.test(v);
+          },
+          message: "Invalid name"
+        },
         trim:true,
         required: [true,"Este campo es requerido"]
       },

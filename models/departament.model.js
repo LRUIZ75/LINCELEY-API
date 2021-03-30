@@ -12,7 +12,14 @@ const DepartamentSchema = Schema({
         type: String,
         minlength: 5,
         maxlength: 12,
-        //match: "[A-Za-z][A-Za-z0-9]+",
+        validate: 
+        {
+          validator: function(v) 
+          {
+              return /^([A-Z]|[a-z])[A-Za-z0-9]+$/.test(v);
+          },
+          message: "Invalid name"
+        },
         required: [true,"Este campo es requerido"] 
       },
     company:
