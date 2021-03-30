@@ -10,6 +10,14 @@ const RoleActionSchema = Schema({
     names:
       { 
         type: String,
+        validate: 
+        {
+          validator: function(v) 
+          {
+              return /^[A-Za-z ]+$/.test(v);
+          },
+          message: "Invalid names"
+        },
         trim:true,
         required: [true,"Este campo es requerido"] 
       },

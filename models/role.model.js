@@ -9,6 +9,14 @@ const Schema = mongoose.Schema;
 const RoleSchema = Schema({
   name: {
     type: String,
+    validate: 
+        {
+          validator: function(v) 
+          {
+              return /^[A-Za-z]+$/.test(v);
+          },
+          message: "Invalid name"
+        },
     required: [true,"Este campo es requerido"]    
   },
   isActive: {

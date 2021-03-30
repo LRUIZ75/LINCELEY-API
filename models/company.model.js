@@ -12,11 +12,27 @@ const CompanySchema = Schema({
     fullName:
       { 
         type: String,
+        validate: 
+        {
+          validator: function(v) 
+          {
+              return /^[A-Za-z ]+$/.test(v);
+          },
+          message: "Invalid fullName"
+        },
         required: [true,"Este campo es requerido"] 
       },
     shortName:
       { 
         type:String,
+        validate: 
+        {
+          validator: function(v) 
+          {
+              return /^[A-Za-z]+$/.test(v);
+          },
+          message: "Invalid shortName"
+        },
         required: [true,"Este campo es requerido"] 
       },
     isActive:

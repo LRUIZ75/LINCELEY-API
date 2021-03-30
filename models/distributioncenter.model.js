@@ -11,6 +11,14 @@ const DistributionCenterSchema = Schema({
       { 
         type: String,
         minlength: 5,
+        validate: 
+        {
+          validator: function(v) 
+          {
+              return /^[A-Za-z ]+$/.test(v);
+          },
+          message: "Invalid name"
+        },
         required: [true,"Este campo es requerido"]
       },
     company:
