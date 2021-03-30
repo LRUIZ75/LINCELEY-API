@@ -62,7 +62,9 @@ const CompanySchema = Schema({
  *           type: "boolean"
  *         location:
  *           type: "object"
- *
+ *       required:
+ *         - fullName
+ *         - shortName
  */
 
 module.exports = mongoose.model('Company',CompanySchema);

@@ -30,6 +30,8 @@ var departamentRoutes = require ('./routes/departament.routes');
 var jobPositionRoutes = require ('./routes/jobposition.routes');
 var employeeRoutes = require ('./routes/employee.routes');
 var distributionCenterRoutes = require ('./routes/distributioncenter.routes');
+var vehicleRoutes = require ('./routes/vehicle.routes');
+var driverRoutes = require ('./routes/driver.routes');
 
 var apiRoutes = [
   rootRoutes,  
@@ -42,7 +44,9 @@ var apiRoutes = [
   departamentRoutes,
   jobPositionRoutes,
   employeeRoutes,
-  distributionCenterRoutes
+  distributionCenterRoutes,
+  vehicleRoutes,
+  driverRoutes
 ];
 
 
