@@ -27,8 +27,9 @@ var userRoutes = require('./routes/user.routes');
 var claimRoutes = require('./routes/claim.routes');
 var companyRoutes = require ('./routes/company.routes');
 var departamentRoutes = require ('./routes/departament.routes');
-var jobpositionRoutes = require ('./routes/jobposition.routes');
+var jobPositionRoutes = require ('./routes/jobposition.routes');
 var employeeRoutes = require ('./routes/employee.routes');
+var distributionCenterRoutes = require ('./routes/distributioncenter.routes');
 
 var apiRoutes = [
   rootRoutes,  
@@ -39,8 +40,9 @@ var apiRoutes = [
   claimRoutes,
   companyRoutes,
   departamentRoutes,
-  jobpositionRoutes,
-  employeeRoutes
+  jobPositionRoutes,
+  employeeRoutes,
+  distributionCenterRoutes
 ];
 
 

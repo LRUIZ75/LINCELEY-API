@@ -3,30 +3,30 @@
 'use strict'
 
 const os = require('os');
-const userModel = require('../models/user.model');
+const distributioncenterModel = require('../models/distributioncenter.model');
 const validator = require('validator');
 const fs = require('fs');
 const path = require('path');
 const { ObjectId } = require('mongodb');
-const { findOneAndDelete } = require('../models/user.model');
+const { findOneAndDelete } = require('../models/distributioncenter.model');
 
 
 /**
  * @swagger
  * tags:
- *   name: User
- *   description: Usuarios
+ *   name: DistributionCenter
+ *   description: Centros de distribución
  */
 
-var userController = {
+var distributioncenterController = {
 
     /**
      * @openapi
-     * /api/user/{id}:
+     * /api/distributioncenter/{id}:
      *   get:
      *     tags: 
-     *       - User
-     *     description: Get Usuarios by Id 
+     *       - DistributionCenter
+     *     description: Get Centros de distribución by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -40,7 +40,7 @@ var userController = {
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/User"
+     *               $ref: "#/components/schemas/DistributionCenter"
      *       404:
      *         description: Not Found
      *       500:
@@ -49,11 +49,11 @@ var userController = {
 
     /**
      * @openapi
-     * /api/user:
+     * /api/distributioncenter:
      *   get:
      *     tags: 
-     *       - User
-     *     description: Get list of Usuarios
+     *       - DistributionCenter
+     *     description: Get list of Centros de distribución
      *     responses:
      *       200:
      *         description: OK
@@ -62,14 +62,14 @@ var userController = {
      *             schema:
      *               type: array
      *               items:
-     *                 $ref: "#/components/schemas/User"
+     *                 $ref: "#/components/schemas/DistributionCenter"
      *       404:
      *         description: Not Found
      *       500:
      *         description: Internal Server Error
      */
 
-    getUser: (req, res) => {
+    getDistributionCenter: (req, res) => {
 
         var id = req.params.id;
 
@@ -80,7 +80,7 @@ var userController = {
 
         console.log(query);
 
-        userModel.find(query, (err, objects) => {
+        distributioncenterModel.find(query, (err, objects) => {
 
 
             if (err) {
@@ -96,7 +96,7 @@ var userController = {
                 return (res.status(404).send({
                     status: "error",
                     message: "Registro(s) no encontrado(s)",
-                    links: [{ "Agregar registro => curl -X POST ": global.baseURL + "/api/user" }]
+                    links: [{ "Agregar registro => curl -X POST ": global.baseURL + "/api/distributioncenter" }]
                 }
 
                 ));
@@ -113,29 +113,29 @@ var userController = {
 
     /**
      * @openapi
-     * /api/user:
+     * /api/distributioncenter:
      *   post:
      *     tags: 
-     *       - User
-     *     description: Create Usuarios
+     *       - DistributionCenter
+     *     description: Create Centros de distribución
      *     parameters:
      *       - in: body
      *         required: true
      *         schema:
-     *           $ref: "#/components/schemas/User"
+     *           $ref: "#/components/schemas/DistributionCenter"
      *     responses:
      *       201:
      *         description: Created
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/User"
+     *               $ref: "#/components/schemas/DistributionCenter"
      *       400:
      *         description: Bad Request
      *       500:
      *         description: Internal Server Error
      */
-    addUser: (req, res) => {
+    addDistributionCenter: (req, res) => {
 
 
         var data = req.body;
@@ -152,12 +152,12 @@ var userController = {
         }
 
 
-        var newUser = new userModel(data);
+        var newDistributionCenter = new distributioncenterModel(data);
 
 
 
         //INTENTAR GUARDAR EL NUEVO OBJETO
-        newUser.save((err, storedObject) => {
+        newDistributionCenter.save((err, storedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
@@ -184,11 +184,11 @@ var userController = {
 
     /**
      * @openapi
-     * /api/user/{id}:
+     * /api/distributioncenter/{id}:
      *   put:
      *     tags: 
-     *       - User
-     *     description: Update Usuarios
+     *       - DistributionCenter
+     *     description: Update Centros de distribución
      *     parameters:
      *       - in: path
      *         name: id
@@ -198,14 +198,14 @@ var userController = {
      *       - in: body
      *         required: true
      *         schema:
-     *           $ref: "#/components/schemas/User"
+     *           $ref: "#/components/schemas/DistributionCenter"
      *     responses:
      *       200:
      *         description: Ok
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/User"
+     *               $ref: "#/components/schemas/DistributionCenter"
      *       400:
      *         description: Bad Request
      *       404:
@@ -213,7 +213,7 @@ var userController = {
      *       500:
      *         description: Internal Server Error
      */
-    editUser: (req, res) => {
+    editDistributionCenter: (req, res) => {
 
         var id = req.params.id;
         var data = req.body;
@@ -234,7 +234,7 @@ var userController = {
         var query = { '_id': { $eq: id } };
         var command = { $set: data };
 
-        userModel.findOneAndUpdate(query, command, { new: true }, (err, updatedObject) => {
+        distributioncenterModel.findOneAndUpdate(query, command, { new: true }, (err, updatedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
@@ -261,11 +261,11 @@ var userController = {
 
     /**
      * @openapi
-     * /api/user/{id}:
+     * /api/distributioncenter/{id}:
      *   delete:
      *     tags: 
-     *       - User
-     *     description: Delete Usuarios by id
+     *       - DistributionCenter
+     *     description: Delete Centros de distribución by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -278,7 +278,7 @@ var userController = {
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/User"
+     *               $ref: "#/components/schemas/DistributionCenter"
      *       400:
      *         description: Bad Request
      *       404:
@@ -286,48 +286,19 @@ var userController = {
      *       500:
      *         description: Internal Server Error
      */
-    deleteUser: (req, res) => {
+    deleteDistributionCenter: (req, res) => {
 
-// el procedimiento de borrado consiste en desactivar el usuario isActive:false
-        var id = req.params.id;
-        if (!id || id == undefined) {
+
+        var personId = req.params.id;
+        if (!personId || personId == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
-       
-        var query = { '_id': { $eq: id } };
-        var command = { $set: {isActive: false} };
 
-        userModel.findOneAndUpdate(query, command, { new: true }, (err, deletedObject) => {
-            if (err) {
-                return (res.status(500).send({
-                    status: "error",
-                    error: err.message
-                }));
-            }
+        var query = { '_id': { $eq: personId } };
 
-            if (!deletedObject) {
-
-                return (res.status(404).send({
-                    status: "error",
-                    message: "No se encontró el registro a modificar"
-                }));
-            }
-
-            return (res.status(200).send({
-                status: "ok",
-                deleted: deletedObject
-            }));
-
-        });
-
-
-
-
-
-        /*
         personsModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
@@ -350,10 +321,9 @@ var userController = {
             }));
 
         });
-        */
     },
     
 
 }
 
-module.exports = userController;
+module.exports = distributioncenterController;
