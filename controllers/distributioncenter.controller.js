@@ -78,7 +78,7 @@ var distributioncenterController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        console.log(query);
+        //console.log(query);
 
         distributioncenterModel.find(query, (err, objects) => {
 
