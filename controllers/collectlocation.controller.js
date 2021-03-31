@@ -3,30 +3,30 @@
 'use strict'
 
 const os = require('os');
-const personModel = require('../models/person.model');
+const collectlocationModel = require('../models/collectlocation.model');
 const validator = require('validator');
 const fs = require('fs');
 const path = require('path');
 const { ObjectId } = require('mongodb');
-const { findOneAndDelete } = require('../models/person.model');
+const { findOneAndDelete } = require('../models/collectlocation.model');
 
 
 /**
  * @swagger
  * tags:
- *   name: Person
- *   description: Personas
+ *   name: CollectLocation
+ *   description: Ubicaciones de recoleccion
  */
 
-var personController = {
+var collectlocationController = {
 
     /**
      * @openapi
-     * /api/person/{id}:
+     * /api/collectlocation/{id}:
      *   get:
      *     tags: 
-     *       - Person
-     *     description: Get Personas by Id 
+     *       - CollectLocation
+     *     description: Get Ubicaciones de recoleccion by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -40,7 +40,7 @@ var personController = {
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/Person"
+     *               $ref: "#/components/schemas/CollectLocation"
      *       404:
      *         description: Not Found
      *       500:
@@ -49,11 +49,11 @@ var personController = {
 
     /**
      * @openapi
-     * /api/person:
+     * /api/collectlocation:
      *   get:
      *     tags: 
-     *       - Person
-     *     description: Get list of Personas
+     *       - CollectLocation
+     *     description: Get list of Ubicaciones de recoleccion
      *     responses:
      *       200:
      *         description: OK
@@ -62,14 +62,14 @@ var personController = {
      *             schema:
      *               type: array
      *               items:
-     *                 $ref: "#/components/schemas/Person"
+     *                 $ref: "#/components/schemas/CollectLocation"
      *       404:
      *         description: Not Found
      *       500:
      *         description: Internal Server Error
      */
 
-    getPerson: (req, res) => {
+    getCollectLocation: (req, res) => {
 
         var id = req.params.id;
 
@@ -78,9 +78,9 @@ var personController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
-        personModel.find(query, (err, objects) => {
+        collectlocationModel.find(query, (err, objects) => {
 
 
             if (err) {
@@ -96,7 +96,7 @@ var personController = {
                 return (res.status(404).send({
                     status: "error",
                     message: "Registro(s) no encontrado(s)",
-                    links: [{ "Agregar registro => curl -X POST ": global.baseURL + "/api/person" }]
+                    links: [{ "Agregar registro => curl -X POST ": global.baseURL + "/api/collectlocation" }]
                 }
 
                 ));
@@ -113,29 +113,29 @@ var personController = {
 
     /**
      * @openapi
-     * /api/person:
+     * /api/collectlocation:
      *   post:
      *     tags: 
-     *       - Person
-     *     description: Create Personas
+     *       - CollectLocation
+     *     description: Create Ubicaciones de recoleccion
      *     parameters:
      *       - in: body
      *         required: true
      *         schema:
-     *           $ref: "#/components/schemas/Person"
+     *           $ref: "#/components/schemas/CollectLocation"
      *     responses:
      *       201:
      *         description: Created
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/Person"
+     *               $ref: "#/components/schemas/CollectLocation"
      *       400:
      *         description: Bad Request
      *       500:
      *         description: Internal Server Error
      */
-    addPerson: (req, res) => {
+    addCollectLocation: (req, res) => {
 
 
         var data = req.body;
@@ -150,13 +150,14 @@ var personController = {
             })
             );
         }
-        
-        //Validar si el numero de identificacion de la nueva persona ya existe
-        
-        var newPerson = new personModel(data);
-        
+
+
+        var newCollectLocation = new collectlocationModel(data);
+
+
+
         //INTENTAR GUARDAR EL NUEVO OBJETO
-        newPerson.save((err, storedObject) => {
+        newCollectLocation.save((err, storedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
@@ -183,11 +184,11 @@ var personController = {
 
     /**
      * @openapi
-     * /api/person/{id}:
+     * /api/collectlocation/{id}:
      *   put:
      *     tags: 
-     *       - Person
-     *     description: Update Personas
+     *       - CollectLocation
+     *     description: Update Ubicaciones de recoleccion
      *     parameters:
      *       - in: path
      *         name: id
@@ -197,14 +198,14 @@ var personController = {
      *       - in: body
      *         required: true
      *         schema:
-     *           $ref: "#/components/schemas/Person"
+     *           $ref: "#/components/schemas/CollectLocation"
      *     responses:
      *       200:
      *         description: Ok
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/Person"
+     *               $ref: "#/components/schemas/CollectLocation"
      *       400:
      *         description: Bad Request
      *       404:
@@ -212,7 +213,7 @@ var personController = {
      *       500:
      *         description: Internal Server Error
      */
-    editPerson: (req, res) => {
+    editCollectLocation: (req, res) => {
 
         var id = req.params.id;
         var data = req.body;
@@ -233,7 +234,7 @@ var personController = {
         var query = { '_id': { $eq: id } };
         var command = { $set: data };
 
-        personModel.findOneAndUpdate(query, command, { new: true }, (err, updatedObject) => {
+        collectlocationModel.findOneAndUpdate(query, command, { new: true }, (err, updatedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
@@ -260,11 +261,11 @@ var personController = {
 
     /**
      * @openapi
-     * /api/person/{id}:
+     * /api/collectlocation/{id}:
      *   delete:
      *     tags: 
-     *       - Person
-     *     description: Delete Personas by id
+     *       - CollectLocation
+     *     description: Delete Ubicaciones de recoleccion by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -277,7 +278,7 @@ var personController = {
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/Person"
+     *               $ref: "#/components/schemas/CollectLocation"
      *       400:
      *         description: Bad Request
      *       404:
@@ -285,7 +286,7 @@ var personController = {
      *       500:
      *         description: Internal Server Error
      */
-    deletePerson: (req, res) => {
+    deleteCollectLocation: (req, res) => {
 
 
         var personId = req.params.id;
@@ -323,193 +324,6 @@ var personController = {
     },
     
 
-    /**
-     * @openapi
-     * /api/person/picture/{id}:
-     *   put:
-     *     tags: 
-     *       - Person
-     *     description: Upload Personas picture
-     *     parameters:
-     *       - in: path
-     *         name: id
-     *         description: "Object Id"
-     *         type: string
-     *         required: true
-     *       - in: form-data
-     *         name: picture
-     *         required: true
-     *         content:
-     *           file:
-     *             schema:
-     *               type: string
-     *               format: base64
-     *     responses:
-     *       200:
-     *         description: Ok
-     *         content:
-     *           application/json:
-     *             schema:
-     *               $ref: "#/components/schemas/Person"
-     *       400:
-     *         description: Bad Request
-     *       404:
-     *         description: Not Found
-     *       500:
-     *         description: Internal Server Error
-     */
-    setPicture: (req, res) => {
-
-        //description: 'Archivo grafico: PNG JPEG GIF' ,
-
-        //recojer fichero de petición
-        var file_name = 'Imagen no proporcionada...';
-        var id = req.params.id;
-
-        // console.log(req.files);
-
-        if (!req.files.picture) {
-            return res.status(400).send({
-                status: 'error',
-                message: 'No hay parametro: logo',
-                file_name
-            });
-        }
-        if (!id) {
-
-            return res.status(400).send({
-                status: 'error',
-                message: 'No hay parámetro: Id'
-            });
-        }
-
-        //conseguir nombre y extensión del archivo
-        var file_path = req.files.picture.path;
-
-        var file_name = path.basename(file_path);
-
-        var file_ext = path.extname(file_name);
-
-
-        console.log(file_ext);
-
-        switch (file_ext) {
-            case '.png':
-            case '.jpg':
-            case '.jpeg':
-            case '.gif':
-                //Archivo aceptable
-
-
-                var query = { '_id': { $eq: id } };
-                var command = { $set: { 'picture': file_name } };
-
-
-                personModel.findOneAndUpdate(query, command, { new: true }, (err, updatedObject) => {
-
-                    if (err) {
-
-                        fs.unlinkSync(file_path);
-
-                        return res.status(500).send({
-                            status: 'error',
-                            error: err
-                        });
-                    }
-
-                    if (!updatedObject) {
-
-                        fs.unlinkSync(file_path);
-
-                        return res.status(404).send({
-                            status: 'error',
-                            message: 'No se pudo encontrar el registro'
-                        });
-                    }
-
-                    return res.status(200).send({
-                        status: 'ok',
-                        updated: updatedObject
-                    });
-                });
-                break;
-
-            default:
-                //Archivo no aceptado
-
-                //Borrar el archivo
-
-                fs.unlinkSync(file_path);
-
-                return res.status(400).send({
-                    status: 'error',
-                    message: 'Tipo de archivo no es imagen',
-                    file_name
-                }
-                );
-                break;
-        };
-    },
-
-
-    /**
-     * @openapi
-     * /api/person/picture/{filename}:
-     *   get:
-     *     tags: 
-     *       - Person
-     *     description: Get Personas picture by filename
-     *     parameters:
-     *       - in: path
-     *         name: filename
-     *         description: Image filename
-     *         required: true
-     *         schema:
-     *           type: string
-     *     responses:
-     *       200:
-     *         description: OK
-     *         content:
-     *           image/png:
-     *             type: image
-     *       400:
-     *         description: Bad Request
-     *       404:
-     *         description: Not Found
-     *       500:
-     *         description: Internal Server Error
-     */
-    getPicture: (req, res) => {
-
-
-       var file = req.params.filename;
-       if (validator.isEmpty(file)) {
-           return (res.status(400).send({
-               status: "error",
-               message: "falta el nombre del archivo"
-           }));
-       }
-
-       var path_file = './uploads/pictures/' + file;
-
-       fs.stat(path_file, (err) => {
-
-           if (err) {
-
-               return res.status(404).send({
-                   status: 'error',
-                   message: 'archivo no encontrado',
-                   path: path_file
-               });
-           }
-
-           return res.status(200).sendFile(path.resolve(path_file));
-
-       });
-
-
-    }
-
 }
 
-module.exports = personController;
+module.exports = collectlocationController;

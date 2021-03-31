@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const validator = require('validator');
+//const uniqueValidator = require('mongoose-unique-validator');
 
 const Schema = mongoose.Schema;
 
@@ -22,7 +23,7 @@ const PersonSchema = Schema({
         trim: true,
         required: [true,"Este campo es requerido"]
       },
-    lastnames:
+    lastNames:
       { 
         type: String,
         minlength: 2,
@@ -38,7 +39,11 @@ const PersonSchema = Schema({
         required: [true,"Este campo es requerido"] 
       },
     personalId:
-      { type:String },
+      { 
+        type:String,
+        trim:true,
+        unique: true 
+      },
     picture:
       { 
         type:String,
@@ -65,7 +70,7 @@ PersonSchema.virtual('fullName').get(function () {
  *       properties: 
  *         names:
  *           type: "string"
- *         lastnames:
+ *         lastNames:
  *           type: "string"
  *         personalId:
  *           type: "string"
