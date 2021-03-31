@@ -78,7 +78,7 @@ var assignmentController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        console.log(query);
+        //console.log(query);
 
         assignmentModel.find(query, (err, objects) => {
 

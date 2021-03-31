@@ -78,7 +78,7 @@ var departamentController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        console.log(query);
+        //console.log(query);
 
         departamentModel.find(query, (err, objects) => {
 

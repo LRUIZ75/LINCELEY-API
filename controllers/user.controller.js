@@ -78,7 +78,7 @@ var userController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        console.log(query);
+        //console.log(query);
 
         userModel.find(query, (err, objects) => {
 

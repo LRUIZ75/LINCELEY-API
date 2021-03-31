@@ -78,7 +78,7 @@ var driverController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        console.log(query);
+        //console.log(query);
 
         driverModel.find(query, (err, objects) => {
 
