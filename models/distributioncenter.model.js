@@ -11,6 +11,7 @@ const DistributionCenterSchema = Schema({
       { 
         type: String,
         minlength: 5,
+        unique:true,
         validate: 
         {
           validator: function(v) 

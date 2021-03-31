@@ -12,6 +12,7 @@ const DepartamentSchema = Schema({
         type: String,
         minlength: 5,
         maxlength: 12,
+        unique:true,
         validate: 
         {
           validator: function(v) 

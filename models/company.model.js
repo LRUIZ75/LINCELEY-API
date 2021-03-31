@@ -12,6 +12,7 @@ const CompanySchema = Schema({
     fullName:
       { 
         type: String,
+        unique:true,
         validate: 
         {
           validator: function(v) 

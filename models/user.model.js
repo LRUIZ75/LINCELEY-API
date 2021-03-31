@@ -21,6 +21,7 @@ const UserSchema = Schema({
           message: "Invalid name"
         },
         trim:true,
+        unique:true,
         required: [true,"Este campo es requerido"]
       },
     email:
