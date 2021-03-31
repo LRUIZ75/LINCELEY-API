@@ -74,6 +74,9 @@ const ClientSchema = Schema({
  *           type: "mongoose.schema.objectid"
  *         services:
  *           type: "object"
+ *       required:
+ *         - alias
+ *         - type
  *
  */
 
