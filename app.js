@@ -97,7 +97,7 @@ const swaggerOptions = {
       title: 'LINCELEY API',
       description: 'An API Rest for LINCELEY',
       version: '1.0.0',
-      license: {
+     /* license: {
         name: "GNU AGPL3",
         url: "https://www.gnu.org/licenses/agpl-3.0-standalone.html"
       },
@@ -105,7 +105,7 @@ const swaggerOptions = {
         name: "CSI HIALEAH",
         url: "http://csihialeah.odoo.com",
         email: "csihialeah@gmail.com"
-      },
+      },*/
       servers: [
         {
           url: "http://localhost:5000/"  //TODO: cambiar a URL de producción
