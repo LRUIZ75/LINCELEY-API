@@ -46,8 +46,7 @@ const PersonSchema = Schema({
       },
     picture:
       { 
-        type:String,
-        required: [true,"Este campo es requerido"] 
+        type:String
       },
     mobileNumber:
       { 

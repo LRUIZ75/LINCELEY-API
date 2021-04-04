@@ -17,5 +17,20 @@ var LocationSchema = new Schema({
     }
   });
 
+  //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Location:
+ *       properties: 
+ *         lat:
+ *           type: "string"  
+ *         lng:
+ *           type: "string"
+ *       required: 
+ *         - lat
+ *         - lng
+ */
 
 module.exports = mongoose.model('GeoLocation', LocationSchema);
