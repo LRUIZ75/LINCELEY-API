@@ -332,20 +332,22 @@ var personController = {
      *     tags: 
      *       - Person
      *     description: Upload Personas picture
+     *     requestBody:
+     *       content:
+     *         multipart/form-data:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               picture:
+     *                 type: string
+     *                 format: base64
      *     parameters:
      *       - in: path
      *         name: id
      *         description: "Object Id"
      *         type: string
      *         required: true
-     *       - in: form-data
-     *         name: picture
-     *         required: true
-     *         content:
-     *           file:
-     *             schema:
-     *               type: string
-     *               format: base64
+
      *     responses:
      *       200:
      *         description: Ok
