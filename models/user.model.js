@@ -36,7 +36,7 @@ const UserSchema = Schema({
       { 
         type:String,
         minlength: 6,
-        maxlength: 10,
+        maxlength: 15,
         trim:true,
         required: [true,"Este campo es requerido"] 
       },
