@@ -291,17 +291,17 @@ var roleactionController = {
     deleteRoleAction: (req, res) => {
 
 
-        var personId = req.params.id;
-        if (!personId || personId == undefined) {
+        var Id = req.params.id;
+        if (!Id || Id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: personId } };
+        var query = { '_id': { $eq: Id } };
 
-        personsModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        roleactionModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",

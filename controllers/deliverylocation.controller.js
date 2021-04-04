@@ -291,8 +291,8 @@ var deliverylocationController = {
     deleteDeliveryLocation: (req, res) => {
 
 
-        var personId = req.params.id;
-        if (!personId || personId == undefined) {
+        var Id = req.params.id;
+        if (!Id || Id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
@@ -301,7 +301,7 @@ var deliverylocationController = {
 
         var query = { '_id': { $eq: personId } };
 
-        personsModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        deliverylocationModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
