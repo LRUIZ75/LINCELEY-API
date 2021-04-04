@@ -91,7 +91,8 @@ const ServiceScheduleSchema = Schema({
  *         serviceType:
  *           type: "string"
  *         vehicle:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         isRepeatable:
  *           type: "boolean"
  *         repeatInterval:

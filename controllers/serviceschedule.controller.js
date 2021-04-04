@@ -120,6 +120,7 @@ var servicescheduleController = {
      *     description: Create Programación de Servicios
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/ServiceSchedule"
@@ -196,6 +197,7 @@ var servicescheduleController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/ServiceSchedule"

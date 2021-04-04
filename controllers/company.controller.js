@@ -120,6 +120,7 @@ var companyController = {
      *     description: Create Compañias
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Company"
@@ -196,6 +197,7 @@ var companyController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Company"

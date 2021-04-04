@@ -49,9 +49,10 @@ const DistributionCenterSchema = Schema({
  *         name:
  *           type: "string"
  *         company:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         location:
- *           type: "mongoose.schema.objectid"
+ *           $ref: "#/components/schemas/Location"
  *         isActive:
  *           type: "boolean"
  *       required:

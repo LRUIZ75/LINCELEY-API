@@ -120,6 +120,7 @@ var vehicleController = {
      *     description: Create Vehiculos
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Vehicle"
@@ -196,6 +197,7 @@ var vehicleController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Vehicle"

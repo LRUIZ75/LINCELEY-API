@@ -120,6 +120,7 @@ var jobpositionController = {
      *     description: Create Puestos de trabajo en una compañia y role por defecto
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/JobPosition"
@@ -196,6 +197,7 @@ var jobpositionController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/JobPosition"

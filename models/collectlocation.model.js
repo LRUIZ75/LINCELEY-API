@@ -43,7 +43,8 @@ const CollectLocationSchema = Schema({
  *     CollectLocation:
  *       properties: 
  *         client:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         alias:
  *           type: "string"
  *         fullAddress:
@@ -57,7 +58,7 @@ const CollectLocationSchema = Schema({
  *         postalCode:
  *           type: "string"
  *         location:
- *           type: "object"
+ *           $ref: "#/components/schemas/Location"
  *       required:
  *         - client
  *         - fullAddress

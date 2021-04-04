@@ -120,6 +120,7 @@ var roleactionController = {
      *     description: Create Acciones por Rol
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/RoleAction"
@@ -196,6 +197,7 @@ var roleactionController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/RoleAction"

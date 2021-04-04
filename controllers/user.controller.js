@@ -120,6 +120,7 @@ var userController = {
      *     description: Create Usuarios
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/User"
@@ -196,6 +197,7 @@ var userController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/User"

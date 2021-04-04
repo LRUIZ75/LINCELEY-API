@@ -120,6 +120,7 @@ var departamentController = {
      *     description: Create Departamentos de una compañia
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Departament"
@@ -196,6 +197,7 @@ var departamentController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Departament"

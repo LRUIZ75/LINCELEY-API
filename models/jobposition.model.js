@@ -47,9 +47,11 @@ const JobPositionSchema = Schema({
  *         name:
  *           type: "string"
  *         company:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         defaultRole:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         isActive:
  *           type: "boolean"
  *       required:

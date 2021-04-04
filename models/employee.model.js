@@ -42,11 +42,14 @@ const EmployeeSchema = Schema({
  *         employeeId:
  *           type: "string"
  *         departament:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         jobposition:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         user:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         isActive:
  *           type: "boolean"
  *       required:

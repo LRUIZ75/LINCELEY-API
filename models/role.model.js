@@ -35,11 +35,14 @@ const RoleSchema = Schema({
  *     Role:
  *       properties: 
  *         name:
- *           type: "string"           
+ *           type: "string"  
+ *           example: "Role1"         
  *         isActive:
  *           type: "boolean"
+ *           example: true
  *         description:
  *           type: "string"
+ *           example: "Role1 description"
  *       required: 
  *         - name
  */

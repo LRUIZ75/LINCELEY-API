@@ -120,6 +120,7 @@ var employeeController = {
      *     description: Create Empleados
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Employee"
@@ -196,6 +197,7 @@ var employeeController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Employee"

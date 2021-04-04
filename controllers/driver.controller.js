@@ -120,6 +120,7 @@ var driverController = {
      *     description: Create Conductores
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Driver"
@@ -196,6 +197,7 @@ var driverController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Driver"

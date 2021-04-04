@@ -61,8 +61,8 @@ const CompanySchema = Schema({
  *           type: "string"
  *         isActive:
  *           type: "boolean"
- *         location:
- *           type: "object"
+ *         location:          
+ *           $ref: "#/components/schemas/Location"
  *       required:
  *         - fullName
  *         - shortName

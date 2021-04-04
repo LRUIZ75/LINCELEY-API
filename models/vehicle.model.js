@@ -74,6 +74,21 @@ const VehicleSchema = Schema({
  * @swagger
  * components:
  *   schemas:
+ *     Document:
+ *       properties:
+ *         registrationCard:
+ *           type: "string"
+ *         insuranceCard:
+ *           type: "string"                 
+ *       required:
+ *         - registrationCard
+ *         - insuranceCard
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
  *     Vehicle:
  *       properties: 
  *         plateNumber:
@@ -87,7 +102,8 @@ const VehicleSchema = Schema({
  *         isExternal:
  *           type: "boolean"
  *         company:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         isActive:
  *           type: "boolean"
  *         isAvailable:

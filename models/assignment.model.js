@@ -38,9 +38,11 @@ const AssignmentSchema = Schema({
  *     Assignment:
  *       properties: 
  *         driver:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         vehicle:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         assignmentDate:
  *           type: "date"
  *         isPermanent:

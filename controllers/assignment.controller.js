@@ -120,6 +120,7 @@ var assignmentController = {
      *     description: Create Asignaciones
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Assignment"
@@ -196,6 +197,7 @@ var assignmentController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Assignment"

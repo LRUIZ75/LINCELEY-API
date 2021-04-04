@@ -120,6 +120,7 @@ var collectlocationController = {
      *     description: Create Ubicaciones de recoleccion
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/CollectLocation"
@@ -196,6 +197,7 @@ var collectlocationController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/CollectLocation"

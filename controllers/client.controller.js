@@ -120,6 +120,7 @@ var clientController = {
      *     description: Create Clientes
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Client"
@@ -196,6 +197,7 @@ var clientController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Client"

@@ -120,6 +120,7 @@ var deliverylocationController = {
      *     description: Create Ubicaciones de entrega
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/DeliveryLocation"
@@ -196,6 +197,7 @@ var deliverylocationController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/DeliveryLocation"

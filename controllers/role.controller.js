@@ -117,9 +117,10 @@ var roleController = {
      *   post:
      *     tags: 
      *       - Role
-     *     description: Create Roles de usuario
+     *     description: Create Roles de usuario     *     
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Role"
@@ -196,6 +197,7 @@ var roleController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Role"

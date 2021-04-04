@@ -120,6 +120,7 @@ var claimController = {
      *     description: Create Reclamos de autenticación
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Claim"
@@ -196,6 +197,7 @@ var claimController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Claim"

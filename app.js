@@ -125,7 +125,7 @@ const swaggerOptions = {
       }
     }
   },
-  securityDefinitions: {
+  /*securityDefinitions: {
     ApiKeyAuth: {
       type: "apiKey",
       in: "header",
@@ -136,7 +136,7 @@ const swaggerOptions = {
     {
       ApiKeyAuth: []
     }
-  ],
+  ],*/
   apis: ['./controllers/*.controller.js', './models/*.model.js'], // files containing annotations OPENAPI
 };
 

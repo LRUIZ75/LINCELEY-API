@@ -44,7 +44,8 @@ const RoleActionSchema = Schema({
  *         names:
  *           type: "string"
  *         role:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         isActive:
  *           type: "boolean"
  *       required:

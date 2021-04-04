@@ -79,24 +79,58 @@ const DriverSchema = Schema({
  * @swagger
  * components:
  *   schemas:
+ *     Document:
+ *       properties:
+ *         licenseCard:
+ *           type: "string"
+ *         insuranceCard:
+ *           type: "string"                 
+ *       required:
+ *         - licenseCard
+ *         - insuranceCard
+ */
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     DocumentComparison:
+ *       properties:
+ *         licenseCard:
+ *           type: "string"
+ *         insuranceCard:
+ *           type: "string"                 
+ *         isOk:
+ *           type: "boolean"
+ *       required:
+ *         - licenseCard
+ *         - insuranceCard
+ * 
+ */
+/**
+ * @swagger
+ * components:
+ *   schemas:
  *     Driver:
  *       properties:
  *         isExternal:
  *           type: "boolean"
  *         employee:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         person:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         company:
- *           type: "mongoose.schema.objectid"          
+ *           type: "string"
+ *           format: "ObjectId"          
  *         isActive:
  *           type: "boolean"
  *         isAvailable:
  *           type: "boolean"
  *         documents:
- *           type: "object"
+ *           $ref: "#/components/schemas/Document"
  *         documentsComparison:
- *           type: "object"          
+ *           $ref: "#/components/schemas/DocumentComparison"          
  *
  */
 

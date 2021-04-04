@@ -60,6 +60,23 @@ const ClientSchema = Schema({
  * @swagger
  * components:
  *   schemas:
+ *     Services:
+ *       properties: 
+ *         employeeLeasing:
+ *           type: "boolean"
+ *         deliveryRoute:
+ *           type: "boolean"
+ *         shippingOrder:
+ *           type: "boolean"
+ *       required:
+ *         - employeeLeasing
+ *         - deliveryRoute
+ *         - shippingOrder
+*/
+/**
+ * @swagger
+ * components:
+ *   schemas:
  *     Client:
  *       properties: 
  *         alias:
@@ -67,13 +84,15 @@ const ClientSchema = Schema({
  *         type:
  *           type: "string"
  *         distributionCenter:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         isReceiver:
  *           type: "boolean"
  *         person:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         services:
- *           type: "object"
+ *           $ref: "#/components/schemas/Services"
  *       required:
  *         - alias
  *         - type

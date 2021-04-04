@@ -120,6 +120,7 @@ var distributioncenterController = {
      *     description: Create Centros de distribución
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/DistributionCenter"
@@ -196,6 +197,7 @@ var distributioncenterController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/DistributionCenter"

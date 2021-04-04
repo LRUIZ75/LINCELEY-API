@@ -42,7 +42,8 @@ const ClaimSchema = Schema({
  *     Claim:
  *       properties: 
  *         user:
- *           type: "mongoose.schema.objectid"
+ *           type: "string"
+ *           format: "ObjectId"
  *         token:
  *           type: "string"
  *         refreshToken:

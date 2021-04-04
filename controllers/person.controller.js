@@ -120,6 +120,7 @@ var personController = {
      *     description: Create Personas
      *     parameters:
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Person"
@@ -195,6 +196,7 @@ var personController = {
      *         type: string
      *         required: true
      *       - in: body
+     *         name: body
      *         required: true
      *         schema:
      *           $ref: "#/components/schemas/Person"

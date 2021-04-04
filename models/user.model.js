@@ -85,6 +85,7 @@ const UserSchema = Schema({
  *             type: "string"
  *         person:
  *           type: "string"
+ *           format: "ObjectId"
  *       required:
  *         - name
  *         - email
