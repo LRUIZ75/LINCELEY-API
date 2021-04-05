@@ -280,7 +280,7 @@ var servicescheduleController = {
          *         content:
          *           application/json:
          *             schema:
-         *               ref: "#/components/schemas/ServiceSchedule"
+         *               $ref: "#/components/schemas/ServiceSchedule"
          *       400:
          *         description: Bad Request
          *       404:
@@ -299,8 +299,8 @@ var servicescheduleController = {
                         }));
                     }
                    
-                    var query = { '_id': { eq: id } };
-                    var command = { set: {isActive: false} };
+                    var query = { '_id': { $eq: id } };
+                    var command = { $set: {isActive: false} };
             
                     servicescheduleModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
                         if (err) {

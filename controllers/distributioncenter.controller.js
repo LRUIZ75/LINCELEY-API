@@ -280,7 +280,7 @@ var distributioncenterController = {
          *         content:
          *           application/json:
          *             schema:
-         *               ref: "#/components/schemas/DistributionCenter"
+         *               $ref: "#/components/schemas/DistributionCenter"
          *       400:
          *         description: Bad Request
          *       404:
@@ -299,8 +299,8 @@ var distributioncenterController = {
                         }));
                     }
                    
-                    var query = { '_id': { eq: id } };
-                    var command = { set: {isActive: false} };
+                    var query = { '_id': { $eq: id } };
+                    var command = { $set: {isActive: false} };
             
                     distributioncenterModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
                         if (err) {

@@ -280,7 +280,7 @@ var driverController = {
          *         content:
          *           application/json:
          *             schema:
-         *               ref: "#/components/schemas/Driver"
+         *               $ref: "#/components/schemas/Driver"
          *       400:
          *         description: Bad Request
          *       404:
@@ -299,8 +299,8 @@ var driverController = {
                         }));
                     }
                    
-                    var query = { '_id': { eq: id } };
-                    var command = { set: {isActive: false} };
+                    var query = { '_id': { $eq: id } };
+                    var command = { $set: {isActive: false} };
             
                     driverModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
                         if (err) {

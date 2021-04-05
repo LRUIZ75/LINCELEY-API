@@ -262,100 +262,70 @@ var userController = {
     },
 
     /**
-     * @openapi
-     * /api/user/{id}:
-     *   delete:
-     *     tags: 
-     *       - User
-     *     description: Desactivar Usuarios por id
-     *     parameters:
-     *       - in: path
-     *         name: id
-     *         description: "Object Id"
-     *         type: string
-     *         required: true
-     *     responses:
-     *       200:
-     *         description: OK
-     *         content:
-     *           application/json:
-     *             schema:
-     *               $ref: "#/components/schemas/User"
-     *       400:
-     *         description: Bad Request
-     *       404:
-     *         description: Not Found
-     *       500:
-     *         description: Internal Server Error
-     */
-
-/**
-     * @openapi
-     * /api/user/{id}:
-     *   delete:
-     *     tags: 
-     *       - User
-     *     description: Desactivar Usuarios por id
-     *     parameters:
-     *       - in: path
-     *         name: id
-     *         description: "Object Id"
-     *         type: string
-     *         required: true
-     *     responses:
-     *       200:
-     *         description: OK
-     *         content:
-     *           application/json:
-     *             schema:
-     *               ref: "#/components/schemas/User"
-     *       400:
-     *         description: Bad Request
-     *       404:
-     *         description: Not Found
-     *       500:
-     *         description: Internal Server Error
-     */
-     deactivateUser: (req, res) => {
-
-        // el procedimiento de borrado consiste en desactivar el usuario isActive:false
-                var id = req.params.id;
-                if (!id || id == undefined) {
-                    return (res.status(400).send({
-                        status: "error",
-                        message: "falta parámetro requerido ID"
-                    }));
-                }
-               
-                var query = { '_id': { eq: id } };
-                var command = { set: {isActive: false} };
-        
-                userModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
-                    if (err) {
-                        return (res.status(500).send({
+         * @openapi
+         * /api/user/{id}:
+         *   delete:
+         *     tags: 
+         *       - User
+         *     description: Desactivar por id
+         *     parameters:
+         *       - in: path
+         *         name: id
+         *         description: "Object Id"
+         *         type: string
+         *         required: true
+         *     responses:
+         *       200:
+         *         description: OK
+         *         content:
+         *           application/json:
+         *             schema:
+         *               $ref: "#/components/schemas/User"
+         *       400:
+         *         description: Bad Request
+         *       404:
+         *         description: Not Found
+         *       500:
+         *         description: Internal Server Error
+         */
+         deactivateUser: (req, res) => {
+    
+            // el procedimiento de borrado consiste en desactivar isActive:false
+                    var id = req.params.id;
+                    if (!id || id == undefined) {
+                        return (res.status(400).send({
                             status: "error",
-                            error: err.message
+                            message: "falta parámetro requerido ID"
                         }));
                     }
-        
-                    if (!deactivateObject) {
-        
-                        return (res.status(404).send({
-                            status: "error",
-                            message: "No se encontró el registro a modificar"
+                   
+                    var query = { '_id': { $eq: id } };
+                    var command = { $set: {isActive: false} };
+            
+                    userModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
+                        if (err) {
+                            return (res.status(500).send({
+                                status: "error",
+                                message: err.message
+                            }));
+                        }
+            
+                        if (!deactivateObject) {
+            
+                            return (res.status(404).send({
+                                status: "error",
+                                message: "No se encontró el registro a modificar"
+                            }));
+                        }
+            
+                        return (res.status(200).send({
+                            status: "ok",
+                            deleted: deactivateObject
                         }));
-                    }
-        
-                    return (res.status(200).send({
-                        status: "ok",
-                        deleted: deactivateObject
-                    }));
-        
-                });
-        
-            },
-
-
+            
+                    });
+            
+                },
 
     /**
      * @openapi

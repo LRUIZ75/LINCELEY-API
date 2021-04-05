@@ -280,7 +280,7 @@ var jobpositionController = {
          *         content:
          *           application/json:
          *             schema:
-         *               ref: "#/components/schemas/JobPosition"
+         *               $ref: "#/components/schemas/JobPosition"
          *       400:
          *         description: Bad Request
          *       404:
@@ -299,8 +299,8 @@ var jobpositionController = {
                         }));
                     }
                    
-                    var query = { '_id': { eq: id } };
-                    var command = { set: {isActive: false} };
+                    var query = { '_id': { $eq: id } };
+                    var command = { $set: {isActive: false} };
             
                     jobpositionModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
                         if (err) {

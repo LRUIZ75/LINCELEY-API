@@ -280,7 +280,7 @@ var roleactionController = {
          *         content:
          *           application/json:
          *             schema:
-         *               ref: "#/components/schemas/RoleAction"
+         *               $ref: "#/components/schemas/RoleAction"
          *       400:
          *         description: Bad Request
          *       404:
@@ -299,8 +299,8 @@ var roleactionController = {
                         }));
                     }
                    
-                    var query = { '_id': { eq: id } };
-                    var command = { set: {isActive: false} };
+                    var query = { '_id': { $eq: id } };
+                    var command = { $set: {isActive: false} };
             
                     roleactionModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
                         if (err) {

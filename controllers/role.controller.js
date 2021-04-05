@@ -280,7 +280,7 @@ var roleController = {
          *         content:
          *           application/json:
          *             schema:
-         *               ref: "#/components/schemas/Role"
+         *               $ref: "#/components/schemas/Role"
          *       400:
          *         description: Bad Request
          *       404:
@@ -299,8 +299,8 @@ var roleController = {
                         }));
                     }
                    
-                    var query = { '_id': { eq: id } };
-                    var command = { set: {isActive: false} };
+                    var query = { '_id': { $eq: id } };
+                    var command = { $set: {isActive: false} };
             
                     roleModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
                         if (err) {

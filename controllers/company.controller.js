@@ -280,7 +280,7 @@ var companyController = {
          *         content:
          *           application/json:
          *             schema:
-         *               ref: "#/components/schemas/Company"
+         *               $ref: "#/components/schemas/Company"
          *       400:
          *         description: Bad Request
          *       404:
@@ -299,8 +299,8 @@ var companyController = {
                         }));
                     }
                    
-                    var query = { '_id': { eq: id } };
-                    var command = { set: {isActive: false} };
+                    var query = { '_id': { $eq: id } };
+                    var command = { $set: {isActive: false} };
             
                     companyModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
                         if (err) {
