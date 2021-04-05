@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:24:45
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/assignment.model');
  * @swagger
  * tags:
  *   name: Assignment
- *   description: Asignaciones
+ *   description: assignment
  */
 
 var assignmentController = {
@@ -26,7 +26,7 @@ var assignmentController = {
      *   get:
      *     tags: 
      *       - Assignment
-     *     description: Get Asignaciones by Id 
+     *     description: Get assignment by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var assignmentController = {
      *   get:
      *     tags: 
      *       - Assignment
-     *     description: Get list of Asignaciones
+     *     description: Get list of assignment
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var assignmentController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         assignmentModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var assignmentController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var assignmentController = {
      *   post:
      *     tags: 
      *       - Assignment
-     *     description: Create Asignaciones
+     *     description: Create assignment
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var assignmentController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var assignmentController = {
      *   put:
      *     tags: 
      *       - Assignment
-     *     description: Update Asignaciones
+     *     description: Update assignment
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var assignmentController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var assignmentController = {
      *   delete:
      *     tags: 
      *       - Assignment
-     *     description: Delete Asignaciones by id
+     *     description: Delete assignment by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var assignmentController = {
     deleteAssignment: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        assignmentModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        assignment.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:27:56
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/claim.model');
  * @swagger
  * tags:
  *   name: Claim
- *   description: Reclamos de autenticación
+ *   description: claim
  */
 
 var claimController = {
@@ -26,7 +26,7 @@ var claimController = {
      *   get:
      *     tags: 
      *       - Claim
-     *     description: Get Reclamos de autenticación by Id 
+     *     description: Get claim by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var claimController = {
      *   get:
      *     tags: 
      *       - Claim
-     *     description: Get list of Reclamos de autenticación
+     *     description: Get list of claim
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var claimController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         claimModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var claimController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var claimController = {
      *   post:
      *     tags: 
      *       - Claim
-     *     description: Create Reclamos de autenticación
+     *     description: Create claim
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var claimController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var claimController = {
      *   put:
      *     tags: 
      *       - Claim
-     *     description: Update Reclamos de autenticación
+     *     description: Update claim
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var claimController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var claimController = {
      *   delete:
      *     tags: 
      *       - Claim
-     *     description: Delete Reclamos de autenticación by id
+     *     description: Delete claim by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var claimController = {
     deleteClaim: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        claimModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        claim.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
