@@ -109,7 +109,7 @@ const VehicleSchema = Schema({
  *         isAvailable:
  *           type: "boolean"
  *         documents:
- *           type: "object"
+ *           $ref: "#/components/schemas/Document"
  *       required:
  *         - plateNumber
  *         - type

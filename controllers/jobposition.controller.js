@@ -147,7 +147,7 @@ var jobpositionController = {
 
             return (res.status(400).send({
                 status: "error",
-                messager: "Faltan parámetros de request en formato JSON"
+                message: "Faltan parámetros de request en formato JSON"
             })
             );
         }
