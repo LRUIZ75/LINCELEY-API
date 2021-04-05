@@ -28,8 +28,8 @@ router.put('/departament/:id',  departamentController.editDepartament); //UPDATE
 router.get('/departament/:id?', departamentController.getDepartament); //RETRIEVE
 router.get('/departament',  departamentController.getDepartament); //RETRIEVE
 
-
-router.delete('/departament/:id',  departamentController.deleteDepartament); //DELETE
+router.delete('/departament/:id',  departamentController.deactivateDepartament); //DEACTIVATE
+//router.delete('/departament/:id',  departamentController.deleteDepartament); //DELETE
 
 
 module.exports = router;

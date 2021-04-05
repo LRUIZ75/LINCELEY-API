@@ -262,6 +262,72 @@ var distributioncenterController = {
     },
 
     /**
+         * @openapi
+         * /api/distributioncenter/{id}:
+         *   delete:
+         *     tags: 
+         *       - DistributionCenter
+         *     description: Desactivar por id
+         *     parameters:
+         *       - in: path
+         *         name: id
+         *         description: "Object Id"
+         *         type: string
+         *         required: true
+         *     responses:
+         *       200:
+         *         description: OK
+         *         content:
+         *           application/json:
+         *             schema:
+         *               ref: "#/components/schemas/DistributionCenter"
+         *       400:
+         *         description: Bad Request
+         *       404:
+         *         description: Not Found
+         *       500:
+         *         description: Internal Server Error
+         */
+         deactivateDistributionCenter: (req, res) => {
+    
+            // el procedimiento de borrado consiste en desactivar isActive:false
+                    var id = req.params.id;
+                    if (!id || id == undefined) {
+                        return (res.status(400).send({
+                            status: "error",
+                            message: "falta parámetro requerido ID"
+                        }));
+                    }
+                   
+                    var query = { '_id': { eq: id } };
+                    var command = { set: {isActive: false} };
+            
+                    distributioncenterModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
+                        if (err) {
+                            return (res.status(500).send({
+                                status: "error",
+                                message: err.message
+                            }));
+                        }
+            
+                        if (!deactivateObject) {
+            
+                            return (res.status(404).send({
+                                status: "error",
+                                message: "No se encontró el registro a modificar"
+                            }));
+                        }
+            
+                        return (res.status(200).send({
+                            status: "ok",
+                            deleted: deactivateObject
+                        }));
+            
+                    });
+            
+                },
+
+    /**
      * @openapi
      * /api/distributioncenter/{id}:
      *   delete:

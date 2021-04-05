@@ -28,8 +28,8 @@ router.put('/distributioncenter/:id',  distributioncenterController.editDistribu
 router.get('/distributioncenter/:id?', distributioncenterController.getDistributionCenter); //RETRIEVE
 router.get('/distributioncenter',  distributioncenterController.getDistributionCenter); //RETRIEVE
 
-
-router.delete('/distributioncenter/:id',  distributioncenterController.deleteDistributionCenter); //DELETE
+router.delete('/distributioncenter/:id',  distributioncenterController.deactivateDistributionCenter); //DEACIVATE
+//router.delete('/distributioncenter/:id',  distributioncenterController.deleteDistributionCenter); //DELETE
 
 
 module.exports = router;

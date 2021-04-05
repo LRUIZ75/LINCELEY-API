@@ -28,8 +28,8 @@ router.put('/vehicle/:id',  vehicleController.editVehicle); //UPDATE
 router.get('/vehicle/:id?', vehicleController.getVehicle); //RETRIEVE
 router.get('/vehicle',  vehicleController.getVehicle); //RETRIEVE
 
-
-router.delete('/vehicle/:id',  vehicleController.deleteVehicle); //DELETE
+router.delete('/vehicle/:id',  vehicleController.deactivateVehicle); //DEACTIVATE
+//router.delete('/vehicle/:id',  vehicleController.deleteVehicle); //DELETE
 
 
 module.exports = router;

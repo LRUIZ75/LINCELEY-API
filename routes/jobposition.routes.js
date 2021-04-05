@@ -28,7 +28,7 @@ router.put('/jobposition/:id',  jobpositionController.editJobPosition); //UPDATE
 router.get('/jobposition/:id?', jobpositionController.getJobPosition); //RETRIEVE
 router.get('/jobposition',  jobpositionController.getJobPosition); //RETRIEVE
 
-
+router.delete('/jobposition/:id',  jobpositionController.deactivateJobPosition); //DELETE
 router.delete('/jobposition/:id',  jobpositionController.deleteJobPosition); //DELETE
 
 

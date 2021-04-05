@@ -28,8 +28,8 @@ router.put('/company/:id',  companyController.editCompany); //UPDATE
 router.get('/company/:id?', companyController.getCompany); //RETRIEVE
 router.get('/company',  companyController.getCompany); //RETRIEVE
 
-
-router.delete('/company/:id',  companyController.deleteCompany); //DELETE
+router.delete('/company/:id',  companyController.deactivateCompany); //DEACTIVATE
+//router.delete('/company/:id',  companyController.deleteCompany); //DELETE
 
 
 module.exports = router;

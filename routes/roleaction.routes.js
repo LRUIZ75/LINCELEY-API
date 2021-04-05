@@ -27,9 +27,9 @@ router.put('/roleaction/:id',  roleactionController.editRoleAction); //UPDATE
 
 router.get('/roleaction/:id?', roleactionController.getRoleAction); //RETRIEVE
 router.get('/roleaction',  roleactionController.getRoleAction); //RETRIEVE
+router.delete('/roleaction/:id',  roleactionController.deactivateRoleAction); //Deactivate
 
-
-router.delete('/roleaction/:id',  roleactionController.deleteRoleAction); //DELETE
+//router.delete('/roleaction/:id',  roleactionController.deleteRoleAction); //DELETE
 
 
 module.exports = router;

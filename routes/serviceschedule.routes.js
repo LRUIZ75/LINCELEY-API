@@ -28,7 +28,7 @@ router.put('/serviceschedule/:id',  servicescheduleController.editServiceSchedul
 router.get('/serviceschedule/:id?', servicescheduleController.getServiceSchedule); //RETRIEVE
 router.get('/serviceschedule',  servicescheduleController.getServiceSchedule); //RETRIEVE
 
-
+router.delete('/serviceschedule/:id',  servicescheduleController.deactivateServiceSchedule); //deactivate
 router.delete('/serviceschedule/:id',  servicescheduleController.deleteServiceSchedule); //DELETE
 
 

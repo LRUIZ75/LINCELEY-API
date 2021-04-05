@@ -28,7 +28,7 @@ router.put('/employee/:id',  employeeController.editEmployee); //UPDATE
 router.get('/employee/:id?', employeeController.getEmployee); //RETRIEVE
 router.get('/employee',  employeeController.getEmployee); //RETRIEVE
 
-
+router.delete('/employee/:id',  employeeController.deactivateEmployee); //deactivate
 router.delete('/employee/:id',  employeeController.deleteEmployee); //DELETE
 
 
