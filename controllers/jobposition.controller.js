@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:47:00
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/jobposition.model');
  * @swagger
  * tags:
  *   name: JobPosition
- *   description: Puestos de trabajo en una compañia y role por defecto
+ *   description: job position
  */
 
 var jobpositionController = {
@@ -26,7 +26,7 @@ var jobpositionController = {
      *   get:
      *     tags: 
      *       - JobPosition
-     *     description: Get Puestos de trabajo en una compañia y role por defecto by Id 
+     *     description: Get job position by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var jobpositionController = {
      *   get:
      *     tags: 
      *       - JobPosition
-     *     description: Get list of Puestos de trabajo en una compañia y role por defecto
+     *     description: Get list of job position
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var jobpositionController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         jobpositionModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var jobpositionController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var jobpositionController = {
      *   post:
      *     tags: 
      *       - JobPosition
-     *     description: Create Puestos de trabajo en una compañia y role por defecto
+     *     description: Create job position
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var jobpositionController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var jobpositionController = {
      *   put:
      *     tags: 
      *       - JobPosition
-     *     description: Update Puestos de trabajo en una compañia y role por defecto
+     *     description: Update job position
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var jobpositionController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var jobpositionController = {
      *   delete:
      *     tags: 
      *       - JobPosition
-     *     description: Delete Puestos de trabajo en una compañia y role por defecto by id
+     *     description: Delete job position by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var jobpositionController = {
     deleteJobPosition: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        jobpositionModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        jobposition.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

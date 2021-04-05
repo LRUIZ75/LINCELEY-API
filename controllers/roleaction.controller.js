@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:48:02
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/roleaction.model');
  * @swagger
  * tags:
  *   name: RoleAction
- *   description: Acciones por Rol
+ *   description: role action
  */
 
 var roleactionController = {
@@ -26,7 +26,7 @@ var roleactionController = {
      *   get:
      *     tags: 
      *       - RoleAction
-     *     description: Get Acciones por Rol by Id 
+     *     description: Get role action by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var roleactionController = {
      *   get:
      *     tags: 
      *       - RoleAction
-     *     description: Get list of Acciones por Rol
+     *     description: Get list of role action
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var roleactionController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         roleactionModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var roleactionController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var roleactionController = {
      *   post:
      *     tags: 
      *       - RoleAction
-     *     description: Create Acciones por Rol
+     *     description: Create role action
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var roleactionController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var roleactionController = {
      *   put:
      *     tags: 
      *       - RoleAction
-     *     description: Update Acciones por Rol
+     *     description: Update role action
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var roleactionController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var roleactionController = {
      *   delete:
      *     tags: 
      *       - RoleAction
-     *     description: Delete Acciones por Rol by id
+     *     description: Delete role action by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var roleactionController = {
     deleteRoleAction: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        roleactionModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        roleaction.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

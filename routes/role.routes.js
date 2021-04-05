@@ -27,9 +27,9 @@ router.put('/role/:id',  roleController.editRole); //UPDATE
 
 router.get('/role/:id?', roleController.getRole); //RETRIEVE
 router.get('/role',  roleController.getRole); //RETRIEVE
+router.delete('/role/:id',  roleController.deactivateRole); //DEACTIVATE
 
-
-router.delete('/role/:id',  roleController.deleteRole); //DELETE
+//router.delete('/role/:id',  roleController.deleteRole); //DELETE
 
 
 module.exports = router;

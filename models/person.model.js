@@ -11,30 +11,14 @@ const PersonSchema = Schema({
     names:
       { 
         type: String,
-        minlength: 2,
-        validate: 
-        {
-          validator: function(v) 
-          {
-              return /^[A-Za-z ]+$/.test(v);
-          },
-          message: "Invalid names"
-        },
+        minlength: 2,        
         trim: true,
         required: [true,"Este campo es requerido"]
       },
     lastNames:
       { 
         type: String,
-        minlength: 2,
-        validate: 
-        {
-          validator: function(v) 
-          {
-              return /^[A-Za-z ]+$/.test(v);
-          },
-          message: "Invalid lastnames"
-        },
+        minlength: 2,        
         trim: true,
         required: [true,"Este campo es requerido"] 
       },

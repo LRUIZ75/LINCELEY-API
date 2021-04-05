@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:48:33
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/serviceschedule.model');
  * @swagger
  * tags:
  *   name: ServiceSchedule
- *   description: Programación de Servicios
+ *   description: service schedule
  */
 
 var servicescheduleController = {
@@ -26,7 +26,7 @@ var servicescheduleController = {
      *   get:
      *     tags: 
      *       - ServiceSchedule
-     *     description: Get Programación de Servicios by Id 
+     *     description: Get service schedule by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var servicescheduleController = {
      *   get:
      *     tags: 
      *       - ServiceSchedule
-     *     description: Get list of Programación de Servicios
+     *     description: Get list of service schedule
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var servicescheduleController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         servicescheduleModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var servicescheduleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var servicescheduleController = {
      *   post:
      *     tags: 
      *       - ServiceSchedule
-     *     description: Create Programación de Servicios
+     *     description: Create service schedule
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var servicescheduleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var servicescheduleController = {
      *   put:
      *     tags: 
      *       - ServiceSchedule
-     *     description: Update Programación de Servicios
+     *     description: Update service schedule
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var servicescheduleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var servicescheduleController = {
      *   delete:
      *     tags: 
      *       - ServiceSchedule
-     *     description: Delete Programación de Servicios by id
+     *     description: Delete service schedule by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var servicescheduleController = {
     deleteServiceSchedule: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        servicescheduleModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        serviceschedule.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

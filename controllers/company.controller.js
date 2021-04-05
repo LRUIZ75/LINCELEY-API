@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:34:22
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/company.model');
  * @swagger
  * tags:
  *   name: Company
- *   description: Compañias
+ *   description: company
  */
 
 var companyController = {
@@ -26,7 +26,7 @@ var companyController = {
      *   get:
      *     tags: 
      *       - Company
-     *     description: Get Compañias by Id 
+     *     description: Get company by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var companyController = {
      *   get:
      *     tags: 
      *       - Company
-     *     description: Get list of Compañias
+     *     description: Get list of company
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var companyController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         companyModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var companyController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var companyController = {
      *   post:
      *     tags: 
      *       - Company
-     *     description: Create Compañias
+     *     description: Create company
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var companyController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var companyController = {
      *   put:
      *     tags: 
      *       - Company
-     *     description: Update Compañias
+     *     description: Update company
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var companyController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var companyController = {
      *   delete:
      *     tags: 
      *       - Company
-     *     description: Delete Compañias by id
+     *     description: Delete company by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var companyController = {
     deleteCompany: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        companyModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        company.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

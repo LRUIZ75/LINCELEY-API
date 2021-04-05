@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:49:21
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/vehicle.model');
  * @swagger
  * tags:
  *   name: Vehicle
- *   description: Vehiculos
+ *   description: vehicle
  */
 
 var vehicleController = {
@@ -26,7 +26,7 @@ var vehicleController = {
      *   get:
      *     tags: 
      *       - Vehicle
-     *     description: Get Vehiculos by Id 
+     *     description: Get vehicle by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var vehicleController = {
      *   get:
      *     tags: 
      *       - Vehicle
-     *     description: Get list of Vehiculos
+     *     description: Get list of vehicle
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var vehicleController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         vehicleModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var vehicleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var vehicleController = {
      *   post:
      *     tags: 
      *       - Vehicle
-     *     description: Create Vehiculos
+     *     description: Create vehicle
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var vehicleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var vehicleController = {
      *   put:
      *     tags: 
      *       - Vehicle
-     *     description: Update Vehiculos
+     *     description: Update vehicle
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var vehicleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var vehicleController = {
      *   delete:
      *     tags: 
      *       - Vehicle
-     *     description: Delete Vehiculos by id
+     *     description: Delete vehicle by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var vehicleController = {
     deleteVehicle: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        vehicleModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        vehicle.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

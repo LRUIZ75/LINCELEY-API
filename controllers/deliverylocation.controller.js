@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:35:00
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/deliverylocation.model');
  * @swagger
  * tags:
  *   name: DeliveryLocation
- *   description: Ubicaciones de entrega
+ *   description: delivery location
  */
 
 var deliverylocationController = {
@@ -26,7 +26,7 @@ var deliverylocationController = {
      *   get:
      *     tags: 
      *       - DeliveryLocation
-     *     description: Get Ubicaciones de entrega by Id 
+     *     description: Get delivery location by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var deliverylocationController = {
      *   get:
      *     tags: 
      *       - DeliveryLocation
-     *     description: Get list of Ubicaciones de entrega
+     *     description: Get list of delivery location
      *     responses:
      *       200:
      *         description: OK
@@ -86,7 +86,7 @@ var deliverylocationController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var deliverylocationController = {
      *   post:
      *     tags: 
      *       - DeliveryLocation
-     *     description: Create Ubicaciones de entrega
+     *     description: Create delivery location
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var deliverylocationController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var deliverylocationController = {
      *   put:
      *     tags: 
      *       - DeliveryLocation
-     *     description: Update Ubicaciones de entrega
+     *     description: Update delivery location
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var deliverylocationController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var deliverylocationController = {
      *   delete:
      *     tags: 
      *       - DeliveryLocation
-     *     description: Delete Ubicaciones de entrega by id
+     *     description: Delete delivery location by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var deliverylocationController = {
     deleteDeliveryLocation: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: personId } };
+        var query = { '_id': { $eq: id } };
 
-        deliverylocationModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        deliverylocation.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

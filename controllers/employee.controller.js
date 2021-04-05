@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:46:43
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/employee.model');
  * @swagger
  * tags:
  *   name: Employee
- *   description: Empleados
+ *   description: employee
  */
 
 var employeeController = {
@@ -26,7 +26,7 @@ var employeeController = {
      *   get:
      *     tags: 
      *       - Employee
-     *     description: Get Empleados by Id 
+     *     description: Get employee by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var employeeController = {
      *   get:
      *     tags: 
      *       - Employee
-     *     description: Get list of Empleados
+     *     description: Get list of employee
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var employeeController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         employeeModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var employeeController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var employeeController = {
      *   post:
      *     tags: 
      *       - Employee
-     *     description: Create Empleados
+     *     description: Create employee
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var employeeController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var employeeController = {
      *   put:
      *     tags: 
      *       - Employee
-     *     description: Update Empleados
+     *     description: Update employee
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var employeeController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var employeeController = {
      *   delete:
      *     tags: 
      *       - Employee
-     *     description: Delete Empleados by id
+     *     description: Delete employee by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var employeeController = {
     deleteEmployee: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        employeeModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        employee.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

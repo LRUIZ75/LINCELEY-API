@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:32:08
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/client.model');
  * @swagger
  * tags:
  *   name: Client
- *   description: Clientes
+ *   description: client
  */
 
 var clientController = {
@@ -26,7 +26,7 @@ var clientController = {
      *   get:
      *     tags: 
      *       - Client
-     *     description: Get Clientes by Id 
+     *     description: Get client by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var clientController = {
      *   get:
      *     tags: 
      *       - Client
-     *     description: Get list of Clientes
+     *     description: Get list of client
      *     responses:
      *       200:
      *         description: OK
@@ -86,7 +86,7 @@ var clientController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var clientController = {
      *   post:
      *     tags: 
      *       - Client
-     *     description: Create Clientes
+     *     description: Create client
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var clientController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var clientController = {
      *   put:
      *     tags: 
      *       - Client
-     *     description: Update Clientes
+     *     description: Update client
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var clientController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var clientController = {
      *   delete:
      *     tags: 
      *       - Client
-     *     description: Delete Clientes by id
+     *     description: Delete client by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var clientController = {
     deleteClient: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        clientModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        client.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

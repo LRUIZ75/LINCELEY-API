@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:29:46
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/collectlocation.model');
  * @swagger
  * tags:
  *   name: CollectLocation
- *   description: Ubicaciones de recoleccion
+ *   description: collect location
  */
 
 var collectlocationController = {
@@ -26,7 +26,7 @@ var collectlocationController = {
      *   get:
      *     tags: 
      *       - CollectLocation
-     *     description: Get Ubicaciones de recoleccion by Id 
+     *     description: Get collect location by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var collectlocationController = {
      *   get:
      *     tags: 
      *       - CollectLocation
-     *     description: Get list of Ubicaciones de recoleccion
+     *     description: Get list of collect location
      *     responses:
      *       200:
      *         description: OK
@@ -86,7 +86,7 @@ var collectlocationController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var collectlocationController = {
      *   post:
      *     tags: 
      *       - CollectLocation
-     *     description: Create Ubicaciones de recoleccion
+     *     description: Create collect location
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var collectlocationController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var collectlocationController = {
      *   put:
      *     tags: 
      *       - CollectLocation
-     *     description: Update Ubicaciones de recoleccion
+     *     description: Update collect location
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var collectlocationController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var collectlocationController = {
      *   delete:
      *     tags: 
      *       - CollectLocation
-     *     description: Delete Ubicaciones de recoleccion by id
+     *     description: Delete collect location by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var collectlocationController = {
     deleteCollectLocation: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        collectlocationModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        collectlocation.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

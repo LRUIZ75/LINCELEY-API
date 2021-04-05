@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:46:25
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/driver.model');
  * @swagger
  * tags:
  *   name: Driver
- *   description: Conductores
+ *   description: driver
  */
 
 var driverController = {
@@ -26,7 +26,7 @@ var driverController = {
      *   get:
      *     tags: 
      *       - Driver
-     *     description: Get Conductores by Id 
+     *     description: Get driver by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var driverController = {
      *   get:
      *     tags: 
      *       - Driver
-     *     description: Get list of Conductores
+     *     description: Get list of driver
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var driverController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         driverModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var driverController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var driverController = {
      *   post:
      *     tags: 
      *       - Driver
-     *     description: Create Conductores
+     *     description: Create driver
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var driverController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var driverController = {
      *   put:
      *     tags: 
      *       - Driver
-     *     description: Update Conductores
+     *     description: Update driver
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var driverController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var driverController = {
      *   delete:
      *     tags: 
      *       - Driver
-     *     description: Delete Conductores by id
+     *     description: Delete driver by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var driverController = {
     deleteDriver: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        driverModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        driver.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

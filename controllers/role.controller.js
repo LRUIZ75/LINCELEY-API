@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:47:46
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/role.model');
  * @swagger
  * tags:
  *   name: Role
- *   description: Roles de usuario
+ *   description: role
  */
 
 var roleController = {
@@ -26,7 +26,7 @@ var roleController = {
      *   get:
      *     tags: 
      *       - Role
-     *     description: Get Roles de usuario by Id 
+     *     description: Get role by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var roleController = {
      *   get:
      *     tags: 
      *       - Role
-     *     description: Get list of Roles de usuario
+     *     description: Get list of role
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var roleController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         roleModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var roleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var roleController = {
      *   post:
      *     tags: 
      *       - Role
-     *     description: Create Roles de usuario     *     
+     *     description: Create role
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var roleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var roleController = {
      *   put:
      *     tags: 
      *       - Role
-     *     description: Update Roles de usuario
+     *     description: Update role
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var roleController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -262,12 +262,78 @@ var roleController = {
     },
 
     /**
+         * @openapi
+         * /api/role/{id}:
+         *   delete:
+         *     tags: 
+         *       - Role
+         *     description: Desactivar Role por id
+         *     parameters:
+         *       - in: path
+         *         name: id
+         *         description: "Object Id"
+         *         type: string
+         *         required: true
+         *     responses:
+         *       200:
+         *         description: OK
+         *         content:
+         *           application/json:
+         *             schema:
+         *               ref: "#/components/schemas/Role"
+         *       400:
+         *         description: Bad Request
+         *       404:
+         *         description: Not Found
+         *       500:
+         *         description: Internal Server Error
+         */
+         deactivateRole: (req, res) => {
+    
+            // el procedimiento de borrado consiste en desactivar el role isActive:false
+                    var id = req.params.id;
+                    if (!id || id == undefined) {
+                        return (res.status(400).send({
+                            status: "error",
+                            message: "falta parámetro requerido ID"
+                        }));
+                    }
+                   
+                    var query = { '_id': { eq: id } };
+                    var command = { set: {isActive: false} };
+            
+                    roleModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
+                        if (err) {
+                            return (res.status(500).send({
+                                status: "error",
+                                message: err.message
+                            }));
+                        }
+            
+                        if (!deactivateObject) {
+            
+                            return (res.status(404).send({
+                                status: "error",
+                                message: "No se encontró el registro a modificar"
+                            }));
+                        }
+            
+                        return (res.status(200).send({
+                            status: "ok",
+                            deleted: deactivateObject
+                        }));
+            
+                    });
+            
+                },
+
+    /**
      * @openapi
      * /api/role/{id}:
      *   delete:
      *     tags: 
      *       - Role
-     *     description: Delete Roles de usuario by id
+     *     description: Delete role by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +357,21 @@ var roleController = {
     deleteRole: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        roleModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        role.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

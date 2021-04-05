@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:47:25
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/person.model');
  * @swagger
  * tags:
  *   name: Person
- *   description: Personas
+ *   description: person
  */
 
 var personController = {
@@ -26,7 +26,7 @@ var personController = {
      *   get:
      *     tags: 
      *       - Person
-     *     description: Get Personas by Id 
+     *     description: Get person by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var personController = {
      *   get:
      *     tags: 
      *       - Person
-     *     description: Get list of Personas
+     *     description: Get list of person
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var personController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         personModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var personController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var personController = {
      *   post:
      *     tags: 
      *       - Person
-     *     description: Create Personas
+     *     description: Create person
      *     parameters:
      *       - in: body
      *         name: body
@@ -151,17 +151,18 @@ var personController = {
             })
             );
         }
-        
-        //Validar si el numero de identificacion de la nueva persona ya existe
-        
+
+
         var newPerson = new personModel(data);
-        
+
+
+
         //INTENTAR GUARDAR EL NUEVO OBJETO
         newPerson.save((err, storedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -188,7 +189,7 @@ var personController = {
      *   put:
      *     tags: 
      *       - Person
-     *     description: Update Personas
+     *     description: Update person
      *     parameters:
      *       - in: path
      *         name: id
@@ -239,7 +240,7 @@ var personController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -266,7 +267,7 @@ var personController = {
      *   delete:
      *     tags: 
      *       - Person
-     *     description: Delete Personas by id
+     *     description: Delete person by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -290,21 +291,21 @@ var personController = {
     deletePerson: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        personModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        person.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -331,7 +332,7 @@ var personController = {
      *   put:
      *     tags: 
      *       - Person
-     *     description: Upload Personas picture
+     *     description: Upload person picture
      *     requestBody:
      *       content:
      *         multipart/form-data:
@@ -347,7 +348,6 @@ var personController = {
      *         description: "Object Id"
      *         type: string
      *         required: true
-
      *     responses:
      *       200:
      *         description: Ok
@@ -417,7 +417,7 @@ var personController = {
 
                         return res.status(500).send({
                             status: 'error',
-                            error: err
+                            message: err.message
                         });
                     }
 
@@ -462,7 +462,7 @@ var personController = {
      *   get:
      *     tags: 
      *       - Person
-     *     description: Get Personas picture by filename
+     *     description: Get person picture by filename
      *     parameters:
      *       - in: path
      *         name: filename

@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 13:12:06
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/user.model');
  * @swagger
  * tags:
  *   name: User
- *   description: Usuarios
+ *   description: user
  */
 
 var userController = {
@@ -26,7 +26,7 @@ var userController = {
      *   get:
      *     tags: 
      *       - User
-     *     description: Get Usuarios by Id 
+     *     description: Get user by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var userController = {
      *   get:
      *     tags: 
      *       - User
-     *     description: Get list of Usuarios
+     *     description: Get list of user
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var userController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         userModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var userController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var userController = {
      *   post:
      *     tags: 
      *       - User
-     *     description: Create Usuarios
+     *     description: Create user
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var userController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var userController = {
      *   put:
      *     tags: 
      *       - User
-     *     description: Update Usuarios
+     *     description: Update user
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var userController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -288,53 +288,82 @@ var userController = {
      *       500:
      *         description: Internal Server Error
      */
-    deactivateUser: (req, res) => {
 
-// el procedimiento de borrado consiste en desactivar el usuario isActive:false
-        var id = req.params.id;
-        if (!id || id == undefined) {
-            return (res.status(400).send({
-                status: "error",
-                message: "falta parámetro requerido ID"
-            }));
-        }
-       
-        var query = { '_id': { $eq: id } };
-        var command = { $set: {isActive: false} };
-
-        userModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
-            if (err) {
-                return (res.status(500).send({
-                    status: "error",
-                    error: err.message
-                }));
-            }
-
-            if (!deactivateObject) {
-
-                return (res.status(404).send({
-                    status: "error",
-                    message: "No se encontró el registro a modificar"
-                }));
-            }
-
-            return (res.status(200).send({
-                status: "ok",
-                deleted: deactivateObject
-            }));
-
-        });
-
-    },
-
-    
-     /**
-     * 
+/**
+     * @openapi
      * /api/user/{id}:
      *   delete:
      *     tags: 
      *       - User
-     *     description: Delete Usuarios by id
+     *     description: Desactivar Usuarios por id
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         description: "Object Id"
+     *         type: string
+     *         required: true
+     *     responses:
+     *       200:
+     *         description: OK
+     *         content:
+     *           application/json:
+     *             schema:
+     *               ref: "#/components/schemas/User"
+     *       400:
+     *         description: Bad Request
+     *       404:
+     *         description: Not Found
+     *       500:
+     *         description: Internal Server Error
+     */
+     deactivateUser: (req, res) => {
+
+        // el procedimiento de borrado consiste en desactivar el usuario isActive:false
+                var id = req.params.id;
+                if (!id || id == undefined) {
+                    return (res.status(400).send({
+                        status: "error",
+                        message: "falta parámetro requerido ID"
+                    }));
+                }
+               
+                var query = { '_id': { eq: id } };
+                var command = { set: {isActive: false} };
+        
+                userModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
+                    if (err) {
+                        return (res.status(500).send({
+                            status: "error",
+                            error: err.message
+                        }));
+                    }
+        
+                    if (!deactivateObject) {
+        
+                        return (res.status(404).send({
+                            status: "error",
+                            message: "No se encontró el registro a modificar"
+                        }));
+                    }
+        
+                    return (res.status(200).send({
+                        status: "ok",
+                        deleted: deactivateObject
+                    }));
+        
+                });
+        
+            },
+
+
+
+    /**
+     * @openapi
+     * /api/user/{id}:
+     *   delete:
+     *     tags: 
+     *       - User
+     *     description: Delete user by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -355,43 +384,43 @@ var userController = {
      *       500:
      *         description: Internal Server Error
      */
-      deleteUser: (req, res) => {
+    deleteUser: (req, res) => {
 
-        // el procedimiento de borrado consiste en desactivar el usuario isActive:false
-                var id = req.params.id;
-                if (!id || id == undefined) {
-                    return (res.status(400).send({
-                        status: "error",
-                        message: "falta parámetro requerido ID"
-                    }));
-                }
-               
-                var query = { '_id': { $eq: id } };
-                
-                userModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
-                    if (err) {
-                        return (res.status(500).send({
-                            status: "error",
-                            error: err.message
-                        }));
-                    }
-        
-                    if (!deletedObject) {
-        
-                        return (res.status(404).send({
-                            status: "error",
-                            message: "No se encontró el registro a eliminar"
-                        }));
-                    }
-        
-                    return (res.status(200).send({
-                        status: "ok",
-                        deleted: deletedObject
-                    }));
-        
-                });
-                
-            },
+
+        var id = req.params.id;
+        if (!id || id == undefined) {
+            return (res.status(400).send({
+                status: "error",
+                message: "falta parámetro requerido ID"
+            }));
+        }
+
+        var query = { '_id': { $eq: id } };
+
+        user.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+            if (err) {
+                return (res.status(500).send({
+                    status: "error",
+                    message: err.message
+                }));
+            }
+
+            if (!deletedObject) {
+
+                return (res.status(404).send({
+                    status: "error",
+                    message: "No se encontró el registro a eliminar"
+                }));
+            }
+
+            return (res.status(200).send({
+                status: "ok",
+                deleted: deletedObject
+            }));
+
+        });
+    },
+    
 
 }
 

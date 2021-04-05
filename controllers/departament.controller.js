@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:45:43
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/departament.model');
  * @swagger
  * tags:
  *   name: Departament
- *   description: Departamentos de una compañia
+ *   description: departament
  */
 
 var departamentController = {
@@ -26,7 +26,7 @@ var departamentController = {
      *   get:
      *     tags: 
      *       - Departament
-     *     description: Get Departamentos de una compañia by Id 
+     *     description: Get departament by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var departamentController = {
      *   get:
      *     tags: 
      *       - Departament
-     *     description: Get list of Departamentos de una compañia
+     *     description: Get list of departament
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var departamentController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         departamentModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var departamentController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var departamentController = {
      *   post:
      *     tags: 
      *       - Departament
-     *     description: Create Departamentos de una compañia
+     *     description: Create departament
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var departamentController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var departamentController = {
      *   put:
      *     tags: 
      *       - Departament
-     *     description: Update Departamentos de una compañia
+     *     description: Update departament
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var departamentController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var departamentController = {
      *   delete:
      *     tags: 
      *       - Departament
-     *     description: Delete Departamentos de una compañia by id
+     *     description: Delete departament by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var departamentController = {
     deleteDepartament: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        departamentModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        departament.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 

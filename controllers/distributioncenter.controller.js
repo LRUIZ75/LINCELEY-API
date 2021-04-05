@@ -1,5 +1,5 @@
-﻿
-
+// Last Updated: 5/4/2021 12:46:11
+// Updated By  : @YourName
 'use strict'
 
 const os = require('os');
@@ -15,7 +15,7 @@ const { findOneAndDelete } = require('../models/distributioncenter.model');
  * @swagger
  * tags:
  *   name: DistributionCenter
- *   description: Centros de distribución
+ *   description: distribution center
  */
 
 var distributioncenterController = {
@@ -26,7 +26,7 @@ var distributioncenterController = {
      *   get:
      *     tags: 
      *       - DistributionCenter
-     *     description: Get Centros de distribución by Id 
+     *     description: Get distribution center by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -53,7 +53,7 @@ var distributioncenterController = {
      *   get:
      *     tags: 
      *       - DistributionCenter
-     *     description: Get list of Centros de distribución
+     *     description: Get list of distribution center
      *     responses:
      *       200:
      *         description: OK
@@ -78,7 +78,7 @@ var distributioncenterController = {
         if (!id || id === undefined) query = {};
         else query = { '_id': { $eq: id } };
 
-        //console.log(query);
+        console.log(query);
 
         distributioncenterModel.find(query, (err, objects) => {
 
@@ -86,7 +86,7 @@ var distributioncenterController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 })
                 );
             }
@@ -117,7 +117,7 @@ var distributioncenterController = {
      *   post:
      *     tags: 
      *       - DistributionCenter
-     *     description: Create Centros de distribución
+     *     description: Create distribution center
      *     parameters:
      *       - in: body
      *         name: body
@@ -162,7 +162,7 @@ var distributioncenterController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
 
             } else {
@@ -189,7 +189,7 @@ var distributioncenterController = {
      *   put:
      *     tags: 
      *       - DistributionCenter
-     *     description: Update Centros de distribución
+     *     description: Update distribution center
      *     parameters:
      *       - in: path
      *         name: id
@@ -240,7 +240,7 @@ var distributioncenterController = {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
@@ -267,7 +267,7 @@ var distributioncenterController = {
      *   delete:
      *     tags: 
      *       - DistributionCenter
-     *     description: Delete Centros de distribución by id
+     *     description: Delete distribution center by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -291,21 +291,21 @@ var distributioncenterController = {
     deleteDistributionCenter: (req, res) => {
 
 
-        var Id = req.params.id;
-        if (!Id || Id == undefined) {
+        var id = req.params.id;
+        if (!id || id == undefined) {
             return (res.status(400).send({
                 status: "error",
                 message: "falta parámetro requerido ID"
             }));
         }
 
-        var query = { '_id': { $eq: Id } };
+        var query = { '_id': { $eq: id } };
 
-        distributioncenterModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        distributioncenter.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
-                    error: err.message
+                    message: err.message
                 }));
             }
 
