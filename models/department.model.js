@@ -1,4 +1,6 @@
-﻿'use strict'
+﻿// Last Updated: 7/4/2021 10:02:26
+// Updated By  : @YourName
+'use strict'
 
 const mongoose = require('mongoose');
 const validator = require('validator');
@@ -6,22 +8,22 @@ const validator = require('validator');
 const Schema = mongoose.Schema;
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
-const DepartamentSchema = Schema({
+const DepartmentSchema = Schema({
     name:
       { 
         type: String,
-        minlength: 5,        
+        trim:true,
         required: [true,"Este campo es requerido"] 
       },
     company:
       { 
         type:mongoose.Schema.ObjectId,
-        required: [true,"Este campo es requerido"] 
+        required: [true,"Este campo es requerido"]
       },
     isActive:
       { 
-        type:Boolean, 
-        default:true
+        type: Boolean,
+        default: true
       }
     
 });
@@ -31,7 +33,7 @@ const DepartamentSchema = Schema({
  * @swagger
  * components:
  *   schemas:
- *     Departament:
+ *     Department:
  *       properties: 
  *         name:
  *           type: "string"
@@ -42,9 +44,10 @@ const DepartamentSchema = Schema({
  *           type: "boolean"
  *       required:
  *         - name
- *         - company
+ *         - company 
+ *
  */
 
-module.exports = mongoose.model('Departament',DepartamentSchema);
+module.exports = mongoose.model('Department',DepartmentSchema);
 // mongoDB creará la collección, con documentos de estructura del modelo.
 

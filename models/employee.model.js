@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 const EmployeeSchema = Schema({
     employeeId:
       { type: String },
-    departament:
+    department:
       { 
         type:mongoose.Schema.ObjectId,
         required: [true,"Este campo es requerido"] 
@@ -41,7 +41,7 @@ const EmployeeSchema = Schema({
  *       properties: 
  *         employeeId:
  *           type: "string"
- *         departament:
+ *         department:
  *           type: "string"
  *           format: "ObjectId"
  *         jobposition:
@@ -53,7 +53,7 @@ const EmployeeSchema = Schema({
  *         isActive:
  *           type: "boolean"
  *       required:
- *         - departament
+ *         - department
  *         - jobposition
  *         - user
  */

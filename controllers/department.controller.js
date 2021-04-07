@@ -1,32 +1,32 @@
-// Last Updated: 5/4/2021 12:45:43
+﻿// Last Updated: 7/4/2021 10:02:26
 // Updated By  : @YourName
 'use strict'
 
 const os = require('os');
-const departamentModel = require('../models/departament.model');
+const departmentModel = require('../models/department.model');
 const validator = require('validator');
 const fs = require('fs');
 const path = require('path');
 const { ObjectId } = require('mongodb');
-const { findOneAndDelete } = require('../models/departament.model');
+const { findOneAndDelete } = require('../models/department.model');
 
 
 /**
  * @swagger
  * tags:
- *   name: Departament
- *   description: departament
+ *   name: Department
+ *   description: department
  */
 
-var departamentController = {
+var departmentController = {
 
     /**
      * @openapi
-     * /api/departament/{id}:
+     * /api/department/{id}:
      *   get:
      *     tags: 
-     *       - Departament
-     *     description: Get departament by Id 
+     *       - Department
+     *     description: Get department by Id 
      *     parameters:
      *       - in: path
      *         name: id
@@ -40,7 +40,7 @@ var departamentController = {
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/Departament"
+     *               $ref: "#/components/schemas/Department"
      *       404:
      *         description: Not Found
      *       500:
@@ -49,11 +49,11 @@ var departamentController = {
 
     /**
      * @openapi
-     * /api/departament:
+     * /api/department:
      *   get:
      *     tags: 
-     *       - Departament
-     *     description: Get list of departament
+     *       - Department
+     *     description: Get list of department
      *     responses:
      *       200:
      *         description: OK
@@ -62,14 +62,14 @@ var departamentController = {
      *             schema:
      *               type: array
      *               items:
-     *                 $ref: "#/components/schemas/Departament"
+     *                 $ref: "#/components/schemas/Department"
      *       404:
      *         description: Not Found
      *       500:
      *         description: Internal Server Error
      */
 
-    getDepartament: (req, res) => {
+    getDepartment: (req, res) => {
 
         var id = req.params.id;
 
@@ -80,7 +80,7 @@ var departamentController = {
 
         console.log(query);
 
-        departamentModel.find(query, (err, objects) => {
+        departmentModel.find(query, (err, objects) => {
 
 
             if (err) {
@@ -96,7 +96,7 @@ var departamentController = {
                 return (res.status(404).send({
                     status: "error",
                     message: "Registro(s) no encontrado(s)",
-                    links: [{ "Agregar registro => curl -X POST ": global.baseURL + "/api/departament" }]
+                    links: [{ "Agregar registro => curl -X POST ": global.baseURL + "/api/department" }]
                 }
 
                 ));
@@ -113,30 +113,30 @@ var departamentController = {
 
     /**
      * @openapi
-     * /api/departament:
+     * /api/department:
      *   post:
      *     tags: 
-     *       - Departament
-     *     description: Create departament
+     *       - Department
+     *     description: Create department
      *     parameters:
      *       - in: body
      *         name: body
      *         required: true
      *         schema:
-     *           $ref: "#/components/schemas/Departament"
+     *           $ref: "#/components/schemas/Department"
      *     responses:
      *       201:
      *         description: Created
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/Departament"
+     *               $ref: "#/components/schemas/Department"
      *       400:
      *         description: Bad Request
      *       500:
      *         description: Internal Server Error
      */
-    addDepartament: (req, res) => {
+    addDepartment: (req, res) => {
 
 
         var data = req.body;
@@ -153,12 +153,12 @@ var departamentController = {
         }
 
 
-        var newDepartament = new departamentModel(data);
+        var newDepartment = new departmentModel(data);
 
 
 
         //INTENTAR GUARDAR EL NUEVO OBJETO
-        newDepartament.save((err, storedObject) => {
+        newDepartment.save((err, storedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
@@ -185,11 +185,11 @@ var departamentController = {
 
     /**
      * @openapi
-     * /api/departament/{id}:
+     * /api/department/{id}:
      *   put:
      *     tags: 
-     *       - Departament
-     *     description: Update departament
+     *       - Department
+     *     description: Update department
      *     parameters:
      *       - in: path
      *         name: id
@@ -200,14 +200,14 @@ var departamentController = {
      *         name: body
      *         required: true
      *         schema:
-     *           $ref: "#/components/schemas/Departament"
+     *           $ref: "#/components/schemas/Department"
      *     responses:
      *       200:
      *         description: Ok
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/Departament"
+     *               $ref: "#/components/schemas/Department"
      *       400:
      *         description: Bad Request
      *       404:
@@ -215,7 +215,7 @@ var departamentController = {
      *       500:
      *         description: Internal Server Error
      */
-    editDepartament: (req, res) => {
+    editDepartment: (req, res) => {
 
         var id = req.params.id;
         var data = req.body;
@@ -236,7 +236,7 @@ var departamentController = {
         var query = { '_id': { $eq: id } };
         var command = { $set: data };
 
-        departamentModel.findOneAndUpdate(query, command, { new: true }, (err, updatedObject) => {
+        departmentModel.findOneAndUpdate(query, command, { new: true }, (err, updatedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
@@ -263,10 +263,10 @@ var departamentController = {
 
     /**
          * @openapi
-         * /api/departament/{id}:
+         * /api/department/{id}:
          *   delete:
          *     tags: 
-         *       - Departament
+         *       - Department
          *     description: Desactivar por id
          *     parameters:
          *       - in: path
@@ -280,7 +280,7 @@ var departamentController = {
          *         content:
          *           application/json:
          *             schema:
-         *               $ref: "#/components/schemas/Departament"
+         *               $ref: "#/components/schemas/Department"
          *       400:
          *         description: Bad Request
          *       404:
@@ -288,7 +288,7 @@ var departamentController = {
          *       500:
          *         description: Internal Server Error
          */
-         deactivateDepartament: (req, res) => {
+         deactivateDepartment: (req, res) => {
     
             // el procedimiento de borrado consiste en desactivar isActive:false
                     var id = req.params.id;
@@ -302,7 +302,7 @@ var departamentController = {
                     var query = { '_id': { $eq: id } };
                     var command = { $set: {isActive: false} };
             
-                    departamentModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
+                    departmentModel.findOneAndUpdate(query, command, { new: true }, (err, deactivateObject) => {
                         if (err) {
                             return (res.status(500).send({
                                 status: "error",
@@ -329,11 +329,11 @@ var departamentController = {
 
     /**
      * @openapi
-     * /api/departament/{id}:
+     * /api/department/{id}:
      *   delete:
      *     tags: 
-     *       - Departament
-     *     description: Delete departament by id
+     *       - Department
+     *     description: Delete department by id
      *     parameters:
      *       - in: path
      *         name: id
@@ -346,7 +346,7 @@ var departamentController = {
      *         content:
      *           application/json:
      *             schema:
-     *               $ref: "#/components/schemas/Departament"
+     *               $ref: "#/components/schemas/Department"
      *       400:
      *         description: Bad Request
      *       404:
@@ -354,7 +354,7 @@ var departamentController = {
      *       500:
      *         description: Internal Server Error
      */
-    deleteDepartament: (req, res) => {
+    deleteDepartment: (req, res) => {
 
 
         var id = req.params.id;
@@ -367,7 +367,7 @@ var departamentController = {
 
         var query = { '_id': { $eq: id } };
 
-        departament.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        department.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
@@ -394,4 +394,4 @@ var departamentController = {
 
 }
 
-module.exports = departamentController;
+module.exports = departmentController;
