@@ -10,17 +10,7 @@ const DepartamentSchema = Schema({
     name:
       { 
         type: String,
-        minlength: 5,
-        maxlength: 12,
-        unique:true,
-        validate: 
-        {
-          validator: function(v) 
-          {
-              return /^([A-Z]|[a-z])[A-Za-z0-9]+$/.test(v);
-          },
-          message: "Invalid name"
-        },
+        minlength: 5,        
         required: [true,"Este campo es requerido"] 
       },
     company:
