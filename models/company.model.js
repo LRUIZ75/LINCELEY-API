@@ -42,6 +42,7 @@ const CompanySchema = Schema({
  *       properties: 
  *         fullName:
  *           type: "string"
+ *           minLength: 2
  *         shortName:
  *           type: "string"
  *         isActive:

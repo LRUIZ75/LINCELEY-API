@@ -71,10 +71,12 @@ const UserSchema = Schema({
  *           type: "string"
  *         email:
  *           type: "string"
+ *           format: email
  *         salt:
  *           type: "string"
  *         password:
  *           type: "string"
+ *           format: password
  *         emailverified:
  *           type: "boolean"
  *         isActive:
