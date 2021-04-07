@@ -11,12 +11,11 @@ const JobPositionSchema = Schema({
       { 
         type: String,
         minlength: 5,
-        maxlength: 12,
         validate: 
         {
           validator: function(v) 
           {
-              return /^([A-Z]|[a-z])[A-Za-z0-9]+$/.test(v);
+              return /^([A-Z]|[a-z] )[A-Za-z0-9 ]+$/.test(v);
           },
           message: "Invalid name"
         },
