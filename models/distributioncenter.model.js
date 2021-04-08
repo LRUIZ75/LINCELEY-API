@@ -60,23 +60,38 @@ const DistributionCenterSchema = Schema({
 });
 
 // La función de validación para actualizacion:
-const updateValidation = function(next) {
+const updateValidation = function (next) {
   let update = this.getUpdate();
-  if(Object.entries(update).length) {
-    if(update.$set) {
-      if ((isFinite(update.$set.location.lat) && (Math.abs(update.$set.location.lat) <= 90)) 
-      && (isFinite(update.$set.location.lng) && (Math.abs(update.$set.location.lng) <= 180)))
-      {
-        //return next;
+  if (Object.entries(update).length) {
+    if (update.$set) {
+      if (update.$set.location) {
+        if (update.$set.location.lat) {
+          if (!update.$set.location.lng)
+            return next(new Error("location lng missing value"));
+          if (
+            !(
+              isFinite(update.$set.location.lat) &&
+              Math.abs(update.$set.location.lat) <= 90
+            )
+          )
+            return next(new Error("location lat invalid values"));
+        }
+        if (update.$set.location.lng) {
+          if (!update.$set.location.lat)
+            return next(new Error("location lat missing value"));
+          if (
+            !(
+              isFinite(update.$set.location.lng) &&
+              Math.abs(update.$set.location.lng) <= 180
+            )
+          )
+            return next(new Error("location lng invalid values"));
+        }
       }
-      else 
-      {
-        return next(new Error('location invalid values'));
-      }      
-    }     
+    }
   }
   return next();
-}
+};
 
 // la declaración de middleware:
 DistributionCenterSchema.pre('update', updateValidation);
