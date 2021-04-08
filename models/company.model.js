@@ -29,16 +29,56 @@ const CompanySchema = Schema({
     location: {
       lat: {
         type: Number,
-        default: 0
+        default: 0,
+        validate:
+        {          
+         validator: function (v) {
+              return  (isFinite(v) && (Math.abs(v) <= 90));
+          },
+          message: "Invalid value"
+        }
       },
       lng: {
         type: Number,
-        default: 0
+        default: 0,
+        validate:
+        {          
+         validator: function (v) {
+              return (isFinite(v) && (Math.abs(v) <= 180));
+          },
+          message: "Invalid value"
+        }
       }
 
     }
     
 });
+
+
+// La función de validación para actualizacion:
+const updateValidation = function(next) {
+  let update = this.getUpdate();
+  if(Object.entries(update).length) {
+    if(update.$set) {
+      if ((isFinite(update.$set.location.lat) && (Math.abs(update.$set.location.lat) <= 90)) 
+      && (isFinite(update.$set.location.lng) && (Math.abs(update.$set.location.lng) <= 180)))
+      {
+        //return next;
+      }
+      else 
+      {
+        return next(new Error('location invalid values'));
+      }      
+    }     
+  }
+  return next();
+}
+
+// la declaración de middleware:
+CompanySchema.pre('update', updateValidation);
+CompanySchema.pre('updateOne', updateValidation);
+CompanySchema.pre('findOneAndUpdate', updateValidation); // incluye findByIdAndUpdate
+
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 /**
