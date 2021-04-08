@@ -107,5 +107,7 @@ dist
 /uploads/logos/*.jpg
 /uploads/pictures/*.jpg
 /backups
+/.vscode
+/.vs
 
 /RUN-BACKEND.cmd
