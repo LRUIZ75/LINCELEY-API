@@ -5,41 +5,41 @@ const validator = require('validator');
 
 const Schema = mongoose.Schema;
 
-
-var LocationSchema = new Schema({
-    lat: {
+const LocationSchema = Schema({
+    lat:
+    {
         type: String,
-        required: true,
-        validate: 
+        required: true
+        /*validate:
         {
-          /*validator: function(v) 
-          {
-              return /^(\+|-)?((\d((\.)|\.\d{1, 6})?)|(0*?[0-8]\d((\.)|\.\d{1, 6})?)|(0*?90((\.)|\.0{1, 6})?))$/.test(v);
-          },
-          message: "Invalid value"*/
-          validator: function(v)
-          {
-            return (isFinite(v) && (Math.abs(v) <= 90))
-          },          
-          message: "Invalid value"
-        },
+            validator: function(v) 
+            {
+                return /^(\+|-)?((\d((\.)|\.\d{1, 6})?)|(0*?[0-8]\d((\.)|\.\d{1, 6})?)|(0*?90((\.)|\.0{1, 6})?))$/.test(v);
+            },
+            message: "Invalid value"
+           validator: function (v) {
+                return (isFinite(v) && (Math.abs(v) <= 90))
+            },
+            message: "Invalid value"
+        }*/
     },
-    lng: {
+    lng:
+    {
         type: String,
-        required: true,
-        validate: 
+        required: true
+        /*validate:
         {
-          validator: function(v) 
-          {
-              return /^(\+|-)?((\d((\.)|\.\d{1, 6})?)|(0*?\d\d((\.)|\.\d{1, 6})?)|(0*?1[0-7]\d((\.)|\.\d{1, 6})?)|(0*?180((\.)|\.0{1, 6})?))$/.test(v);
-          },
-          message: "Invalid value"          
-
-        },
+            validator: function (v) {
+                return /^(\+|-)?((\d((\.)|\.\d{1, 6})?)|(0*?\d\d((\.)|\.\d{1, 6})?)|(0*?1[0-7]\d((\.)|\.\d{1, 6})?)|(0*?180((\.)|\.0{1, 6})?))$/.test(v);
+            },
+            message: "Invalid value"
+        }*/
     }
-  });
+});
 
-  //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
+
+
+//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 /**
  * @swagger
  * components:
@@ -55,4 +55,4 @@ var LocationSchema = new Schema({
  *         - lng
  */
 
-module.exports = mongoose.model('GeoLocation', LocationSchema);
+module.exports = mongoose.model('Location', LocationSchema);

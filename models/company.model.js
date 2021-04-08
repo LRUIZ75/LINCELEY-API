@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const validator = require('validator');
-const location = require('./location.model');
+const Location = require('./location.model');
 const Schema = mongoose.Schema;
 
 
@@ -26,9 +26,9 @@ const CompanySchema = Schema({
         type:Boolean,
         default: true
       },
-    location:
+    location: 
       { 
-        type: {location}
+        type: Location
       }
     
 });
