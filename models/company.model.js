@@ -2,9 +2,9 @@
 
 const mongoose = require('mongoose');
 const validator = require('validator');
-const Location = require('./location.model');
-const Schema = mongoose.Schema;
+//const location = require('./location.model');
 
+const Schema = mongoose.Schema;
 
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
@@ -26,12 +26,36 @@ const CompanySchema = Schema({
         type:Boolean,
         default: true
       },
-    location: 
-      { 
-        type: Location
+    location: {
+      lat: {
+        type: Number,
+        default: 0
+      },
+      lng: {
+        type: Number,
+        default: 0
       }
+
+    }
     
 });
+
+//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Location:
+ *       properties:
+ *         lat:
+ *           type: "number"
+ *         lng:
+ *           type: "number"
+ *       required:
+ *         - lat
+ *         - lng
+ */
+
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 /**
