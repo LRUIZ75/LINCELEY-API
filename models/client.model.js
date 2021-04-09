@@ -6,17 +6,17 @@ const validator = require('validator');
 const Schema = mongoose.Schema;
 
 var ServicesSchema = new Schema({
-  employeeLeasing: {
+  leasing: {
     type: Boolean,
     default: false,
     required: true
   },
-  deliveryRoute: {
+  route: {
     type: Boolean,
     default: false,
     required: true
   },
-  shippingOrder: {
+  shippingGuide: {
     type: Boolean,
     default: true,
     required: true
@@ -62,16 +62,16 @@ const ClientSchema = Schema({
  *   schemas:
  *     Services:
  *       properties: 
- *         employeeLeasing:
+ *         leasing:
  *           type: "boolean"
- *         deliveryRoute:
+ *         route:
  *           type: "boolean"
- *         shippingOrder:
+ *         shippingGuide:
  *           type: "boolean"
  *       required:
- *         - employeeLeasing
- *         - deliveryRoute
- *         - shippingOrder
+ *         - leasing
+ *         - route
+ *         - shippingGuide
 */
 /**
  * @swagger

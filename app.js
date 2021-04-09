@@ -37,6 +37,7 @@ var serviceScheduleRoutes = require ('./routes/serviceschedule.routes');
 var clientRoutes = require ('./routes/client.routes');
 var collectLocationRoutes = require ('./routes/collectlocation.routes');
 var deliveryLocationRoutes = require ('./routes/deliverylocation.routes');
+var paymentMethodRoutes = require ('./routes/paymentmethod.routes');
 
 var apiRoutes = [
   rootRoutes,  
@@ -56,7 +57,8 @@ var apiRoutes = [
   serviceScheduleRoutes,
   clientRoutes,
   collectLocationRoutes,
-  deliveryLocationRoutes
+  deliveryLocationRoutes,
+  paymentMethodRoutes
 ];
 
 
