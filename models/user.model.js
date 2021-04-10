@@ -56,7 +56,11 @@ const UserSchema = Schema({
       { 
         type:mongoose.Schema.ObjectId,
         required: [true,"Este campo es Requerido"]
-      }
+      },
+    company:
+    {
+      type: mongoose.Schema.ObjectId
+    }
     
 });
 
@@ -86,6 +90,9 @@ const UserSchema = Schema({
  *           items:
  *             type: "string"
  *         person:
+ *           type: "string"
+ *           format: "ObjectId"
+ *         company:
  *           type: "string"
  *           format: "ObjectId"
  *       required:
