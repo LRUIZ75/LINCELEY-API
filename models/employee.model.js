@@ -8,7 +8,9 @@ const Schema = mongoose.Schema;
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 const EmployeeSchema = Schema({
     employeeId:
-      { type: String },
+      { type: String,
+      description:"Employee identification number or name"
+    },
     department:
       { 
         type:mongoose.Schema.ObjectId,
@@ -19,7 +21,7 @@ const EmployeeSchema = Schema({
         type:mongoose.Schema.ObjectId,
         required: [true,"Este campo es requerido"] 
       },
-    user:
+    person:
       { 
         type:mongoose.Schema.ObjectId,
         required: [true,"Este campo es requerido"] 
@@ -40,14 +42,15 @@ const EmployeeSchema = Schema({
  *     Employee:
  *       properties: 
  *         employeeId:
- *           type: "string"
+ *           type: "string",
+ *           description: "Employee identification number or name"
  *         department:
  *           type: "string"
  *           format: "ObjectId"
  *         jobposition:
  *           type: "string"
  *           format: "ObjectId"
- *         user:
+ *         person:
  *           type: "string"
  *           format: "ObjectId"
  *         isActive:
@@ -55,7 +58,7 @@ const EmployeeSchema = Schema({
  *       required:
  *         - department
  *         - jobposition
- *         - user
+ *         - person
  */
 
 module.exports = mongoose.model('Employee',EmployeeSchema);
