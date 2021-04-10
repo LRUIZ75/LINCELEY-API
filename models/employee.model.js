@@ -26,6 +26,14 @@ const EmployeeSchema = Schema({
         type:mongoose.Schema.ObjectId,
         required: [true,"Este campo es requerido"] 
       },
+    email:
+    {
+      type: String
+    },
+    sueldo:
+    {
+      type: Number
+    },
     isActive:
       { 
         type:Boolean,
@@ -42,7 +50,7 @@ const EmployeeSchema = Schema({
  *     Employee:
  *       properties: 
  *         employeeId:
- *           type: "string",
+ *           type: "string"
  *           description: "Employee identification number or name"
  *         department:
  *           type: "string"
@@ -53,6 +61,11 @@ const EmployeeSchema = Schema({
  *         person:
  *           type: "string"
  *           format: "ObjectId"
+ *         email:
+ *           type: "string"
+ *           format: "email"
+ *         sueldo:
+ *           type: "number"
  *         isActive:
  *           type: "boolean"
  *       required:
