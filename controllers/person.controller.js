@@ -301,7 +301,7 @@ var personController = {
 
         var query = { '_id': { $eq: id } };
 
-        person.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        personModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
