@@ -39,7 +39,7 @@ const PersonSchema = Schema({
   },
   birthdate: {
     type: String,
-    format: "yyyy-MM-dd",
+    format: Date
   },
   homeAddress: {
     type: String,
