@@ -6,16 +6,13 @@ const validator = require('validator');
 //const document = require('./document.model');
 const Schema = mongoose.Schema;
 
-var DocumentSchema = new Schema({
-  registrationCard: {
-      type: String,
-      required: true
-  },
-  insuranceCard: {
-      type: String,
-      required: true
-  }
-});
+
+/* const VehicleType = {
+  AUTO = 'AUTO',
+  MOTO = 'MOTO',
+  PICKUPTRUCK = 'PICKUP',
+  TRUCK = 'TRUCK',
+} */
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 const VehicleSchema = Schema({
@@ -24,23 +21,27 @@ const VehicleSchema = Schema({
         type: String,
         required: [true,"Este campo es requerido"]  
       },
-    type:
+    vehicleType:
       { 
         type:String,
         enum: 
         [
-            "auto",
-            "moto",
-            "camioneta",
-            "camión/truck"
+            "AUTO",
+            "MOTO",
+            "PICKUP",
+            "TRUCK"
         ],
-        default: "auto",
+        default: "AUTO",
         required: [true,"Este campo es requerido"]  
       },
-    brandModel:
+    brand:
+      { type:String },
+    model:
       { type:String },
     color:
       { type:String },
+    year: 
+    { type: Number },
     isExternal:
       { 
         type:Boolean,
@@ -62,8 +63,19 @@ const VehicleSchema = Schema({
         default:true 
       },
     documents:
-      { 
-        type:{DocumentSchema} 
+    {
+      registrationCard: {
+          type: String,
+          required: true
+      },
+      insuranceCard: {
+          type: String,
+          required: true
+      }
+    },
+    owner: {
+      type: String,
+      description: "Owner"
       }
     
 });
@@ -93,26 +105,38 @@ const VehicleSchema = Schema({
  *       properties: 
  *         plateNumber:
  *           type: "string"
- *         type:
+ *         vehicleType:
  *           type: "string"
- *         brandModel:
+ *         brand:
  *           type: "string"
+ *         model:
+ *           type: "string"
+ *         year:
+ *           type: "number" 
  *         color:
  *           type: "string"
  *         isExternal:
  *           type: "boolean"
+ *           default: "false"
  *         company:
  *           type: "string"
  *           format: "ObjectId"
  *         isActive:
  *           type: "boolean"
+ *           default: "true"
  *         isAvailable:
  *           type: "boolean"
+ *           default: "false"
  *         documents:
  *           $ref: "#/components/schemas/Document"
+ *         owner:
+ *           type: "string"
+ *           format: "ObjectId"
+ *           description: "Person OID"
  *       required:
  *         - plateNumber
  *         - type
+ *         - company
  */
 
 module.exports = mongoose.model('Vehicle',VehicleSchema);
