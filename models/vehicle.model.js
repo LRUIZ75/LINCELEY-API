@@ -1,11 +1,10 @@
-﻿'use strict'
+﻿"use strict";
 
-const mongoose = require('mongoose');
-const validator = require('validator');
+const mongoose = require("mongoose");
+const validator = require("validator");
 
 //const document = require('./document.model');
 const Schema = mongoose.Schema;
-
 
 /* const VehicleType = {
   AUTO = 'AUTO',
@@ -16,93 +15,65 @@ const Schema = mongoose.Schema;
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 const VehicleSchema = Schema({
-    plateNumber:
-      { 
-        type: String,
-        required: [true,"Este campo es requerido"]  
+  plateNumber: {
+    type: String,
+    required: [true, "Este campo es requerido"],
+  },
+  vehicleType: {
+    type: String,
+    enum: ["AUTO", "MOTO", "PICKUP", "TRUCK"],
+    default: "AUTO",
+    required: [true, "Este campo es requerido"],
+  },
+  brand: { type: String },
+  model: { type: String },
+  color: { type: String },
+  year: { type: Number },
+  isExternal: {
+    type: Boolean,
+    default: false,
+  },
+  company: {
+    type: mongoose.Schema.ObjectId,
+    required: [
+      function () {
+        return !this.isExternal;
       },
-    vehicleType:
-      { 
-        type:String,
-        enum: 
-        [
-            "AUTO",
-            "MOTO",
-            "PICKUP",
-            "TRUCK"
-        ],
-        default: "AUTO",
-        required: [true,"Este campo es requerido"]  
-      },
-    brand:
-      { type:String },
-    model:
-      { type:String },
-    color:
-      { type:String },
-    year: 
-    { type: Number },
-    isExternal:
-      { 
-        type:Boolean,
-        default:false 
-      },
-    company:
-      {         
-        type:mongoose.Schema.ObjectId,
-        required: [function () { return !this.isExternal },"Este campo es requerido"]
-      },
-    isActive:
-      { 
-        type:Boolean,
-        default:true
-      },
-    isAvailable:
-      { 
-        type:Boolean,
-        default:true 
-      },
-    documents:
-    {
-      registrationCard: {
-          type: String,
-          required: true
-      },
-      insuranceCard: {
-          type: String,
-          required: true
-      }
-    },
-    owner: {
-      type: String,
-      description: "Owner"
-      }
-    
+      "Este campo es requerido",
+    ],
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
+  isAvailable: {
+    type: Boolean,
+    default: true,
+  },
+  registrationCard: {
+    type: String,
+    required: true,
+  },
+  insuranceCard: {
+    type: String,
+    required: true,
+  },
+  owner: {
+    type: String,
+    description: "Owner",
+  },
 });
-
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 /**
- * @swagger
- * components:
- *   schemas:
- *     Document:
- *       properties:
- *         registrationCard:
- *           type: "string"
- *         insuranceCard:
- *           type: "string"                 
- *       required:
- *         - registrationCard
- *         - insuranceCard
- */
+
 
 /**
  * @swagger
  * components:
  *   schemas:
  *     Vehicle:
- *       properties: 
+ *       properties:
  *         plateNumber:
  *           type: "string"
  *         vehicleType:
@@ -112,7 +83,7 @@ const VehicleSchema = Schema({
  *         model:
  *           type: "string"
  *         year:
- *           type: "number" 
+ *           type: "number"
  *         color:
  *           type: "string"
  *         isExternal:
@@ -127,8 +98,10 @@ const VehicleSchema = Schema({
  *         isAvailable:
  *           type: "boolean"
  *           default: "false"
- *         documents:
- *           $ref: "#/components/schemas/Document"
+ *         registrationCard:
+ *           type: "string"
+ *         insuranceCard:
+ *           type: "string"
  *         owner:
  *           type: "string"
  *           format: "ObjectId"
@@ -137,8 +110,9 @@ const VehicleSchema = Schema({
  *         - plateNumber
  *         - type
  *         - company
+ *         - registrationCard
+ *         - insuranceCard
  */
 
-module.exports = mongoose.model('Vehicle',VehicleSchema);
+module.exports = mongoose.model("Vehicle", VehicleSchema);
 // mongoDB creará la collección, con documentos de estructura del modelo.
-
