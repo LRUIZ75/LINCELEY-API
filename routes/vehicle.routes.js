@@ -8,7 +8,7 @@ var vehicleController = require('../controllers/vehicle.controller');
 var router = express.Router();
 
 var multipart = require('connect-multiparty');
-var md_uploadpictures = multipart({uploadDir: './uploads/pictures/vehicles'});
+var md_uploadpictures = multipart({uploadDir: './uploads/pictures'});
 
 /* 
 C for Create: HTTP POST
