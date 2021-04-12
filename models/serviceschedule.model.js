@@ -66,8 +66,10 @@ const ServiceScheduleSchema = Schema({
  *           format: "ObjectId"
  *         serviceStatus:
  *           type: "string"
- *         startSchedule:
- *           type: "date"
+ *           enum: ["AVAILABLE","SERVICING","ON-DUTY"]
+ *         startDate:
+ *           type: "string"
+ *           format: "Date"
  *         term:
  *           type: "string"
  *           description: "duration of status."
