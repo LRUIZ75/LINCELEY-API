@@ -29,6 +29,7 @@
     "heroku": "^7.51.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.13",
+    "node-cron": "^3.0.0",
     "swagger-jsdoc": "6.0.6",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.5.2"

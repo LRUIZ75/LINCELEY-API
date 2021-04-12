@@ -38,6 +38,14 @@ if(process.env.NODE_ENV == 'production'){
 
 mongoose.Promise = global.Promise;
 
+var cron = require('node-cron');
+//https://www.npmjs.com/package/node-cron
+
+//TODO: usar Bree: https://github.com/breejs/bree#foreword
+cron.schedule('* * * * *', () => {
+  console.log('running a task every 1 minute');
+});
+
 mongoose.connect(uriMongoDB, options)
     .then(
         () => {
