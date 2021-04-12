@@ -1,79 +1,57 @@
-﻿'use strict'
+﻿"use strict";
 
-const mongoose = require('mongoose');
-const validator = require('validator');
+const mongoose = require("mongoose");
+const validator = require("validator");
 
 const Schema = mongoose.Schema;
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 const ServiceScheduleSchema = Schema({
-    startSchedule:
-      { 
-        type: Date,
-        default: Date.now(),
-        required: [true,"Este campo es requerido"]  
+  vehicle: {
+    type: mongoose.Schema.ObjectId,
+    required: [true, "Este campo es requerido"],
+  },
+  serviceStatus: {
+    type: String,
+    enum: [
+      "AVAILABLE",
+      "SERVICING", //MANTENIMIENTO
+      "ON-DUTY", //DE SERVICIO
+    ],
+    required: [true, "Este campo es requerido"],
+  },
+  startDate: {
+    type: Date,
+    default: Date.now(),
+    required: [true, "Este campo es requerido"],
+  },
+  term: {
+    type: String,
+    description: "duration of status",
+    validate: {
+      validator: function (v) {
+        return /^[0-9]+[hdwmy]{1}$/.test(v);
       },
-    duration:
-      { 
-        type:String, 
-        validate: 
-        {
-          validator: function(v) 
-          {
-              return /^[0-9]+[hdwmy]{1}$/.test(v);
-          },
-          message: "Invalid duration"
-        },
-        default: "1d",
-        required: [true,"Este campo es requerido"]
+      message: "Invalid term",
+    },
+    default: "1d",
+    required: [true, "Este campo es requerido"],
+  },
+  repeatEvery: {
+    type: String,
+    default: "0d",
+    validate: {
+      validator: function (v) {
+        return /^[0-9]+[dwmy]{1}$/.test(v);
       },
-    serviceType:
-      { 
-        type:String,
-        enum: 
-        [
-          "on duty/de turno",
-          "maintenance/mantenimiento",
-          "off duty/relevado"
-        ], 
-        required: [true,"Este campo es requerido"]
-      },
-    vehicle:
-      { 
-        type:mongoose.Schema.ObjectId,
-        required: [true,"Este campo es requerido"]
-      },
-    isRepeatable:
-      { 
-        type:Boolean,
-        default: false
-      },
-    repeatInterval:
-      { 
-        type:String, 
-        validate: 
-        {
-          validator: function(v) 
-          {
-              return /^[0-9]+[hdwmy]{1}$/.test(v);
-          },
-          message: "Invalid repeatInterval"
-        },
-        required: [function () { return this.isRepeatable },"Este campo es requerido"] 
-      },
-    comments:
-      { type:String },
-    isAvailable:
-      { 
-        type:Boolean,
-        default:true 
-      },
-    isActive:
-      { 
-        type:Boolean,
-        default: true 
-      }
-    
+      message: "Invalid repeat interval",
+    },
+  },
+  comments: { type: String },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
@@ -82,34 +60,32 @@ const ServiceScheduleSchema = Schema({
  * components:
  *   schemas:
  *     ServiceSchedule:
- *       properties: 
- *         startSchedule:
- *           type: "date"
- *         duration:
- *           type: "string"
- *           example: "9h"
- *         serviceType:
- *           type: "string"
+ *       properties:
  *         vehicle:
  *           type: "string"
  *           format: "ObjectId"
- *         isRepeatable:
- *           type: "boolean"
- *         repeatInterval:
+ *         serviceStatus:
  *           type: "string"
+ *         startSchedule:
+ *           type: "date"
+ *         term:
+ *           type: "string"
+ *           description: "duration of status."
+ *           example: "0d"
+ *         repeatEvery:
+ *           type: "string"
+ *           description: "interval to repeat status."
+ *           example: "0d"
  *         comments:
  *           type: "string"
- *         isAvailable:
- *           type: "boolean"
  *         isActive:
  *           type: "boolean"
  *       required:
- *         - startSchedule
- *         - duration
- *         - serviceType
  *         - vehicle
+ *         - serviceStatus
+ *         - startDate
+ *         - term
  */
 
-module.exports = mongoose.model('ServiceSchedule',ServiceScheduleSchema);
+module.exports = mongoose.model("ServiceSchedule", ServiceScheduleSchema);
 // mongoDB creará la collección, con documentos de estructura del modelo.
-
