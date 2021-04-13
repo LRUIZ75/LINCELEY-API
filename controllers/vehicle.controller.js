@@ -430,6 +430,7 @@ var vehicleController = {
         file_name,
       });
     }
+
     if (!id || !fieldname) {
       return res.status(400).send({
         status: "error",
@@ -437,7 +438,10 @@ var vehicleController = {
       });
     }
 
-    if (fieldname != "registrationCard" && fieldname != "insuranceCard") {
+    //TODO: Revisar y controlar los campos válidos para imagenes de la colección
+    var validFields = ["picture","registrationCard","insuranceCard"];
+
+    if (!(fieldname in validFields)) {
       return res.status(400).send({
         status: "error",
         message: "Parámetros de ruta, son incorrectos",
@@ -462,12 +466,13 @@ var vehicleController = {
 
         var query = { _id: { $eq: id } };
         // registrationCard | insuranceCard
-
-        var command = {};
+        var cmdStr = "{ $set: {" + fieldname + ": '" + file_name  + "' } }"
+        var command = JSON.parse(cmdStr);
+/*         var command = {};
         if (fieldname == "insuranceCard")
           command = { $set: { insuranceCard: file_name } };
         if (fieldname == "registrationCard")
-          command = { $set: { registrationCard: file_name } };
+          command = { $set: { registrationCard: file_name } }; */
 
         vehicleModel.findOneAndUpdate(
           query,
@@ -518,7 +523,7 @@ var vehicleController = {
 
   /**
    * @openapi
-   * /api/vehicle/{filename}:
+   * /api/vehicle/picture/{filename}:
    *   get:
    *     tags:
    *       - Vehicle

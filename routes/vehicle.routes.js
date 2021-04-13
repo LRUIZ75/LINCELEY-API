@@ -33,6 +33,6 @@ router.delete('/vehicle/:id',  vehicleController.deactivateVehicle); //DEACTIVAT
 
 
 router.put('/vehicle/:field/:id', [ md_uploadpictures], vehicleController.setPicture); //UPDATE IMAGE 
-router.get('/vehicle/:filename', vehicleController.getPicture); //RETRIEVE IMAGE 
+router.get('/vehicle/picture/:filename', vehicleController.getPicture); //RETRIEVE IMAGE 
 
 module.exports = router;
