@@ -43,7 +43,7 @@ var cron = require('node-cron');
 
 //TODO: usar Bree: https://github.com/breejs/bree#foreword
 cron.schedule('* * * * *', () => {
-  console.log('Ø');
+  console.log('*');
 });
 
 mongoose.connect(uriMongoDB, options)
