@@ -21,11 +21,6 @@ const AssignmentSchema = Schema({
       { 
         type:Date, 
         default: Date.now()
-      },
-    isPermanent:
-      { 
-        type:Boolean,
-        default:false
       }
     
 });
@@ -44,9 +39,7 @@ const AssignmentSchema = Schema({
  *           type: "string"
  *           format: "ObjectId"
  *         assignmentDate:
- *           type: "date"
- *         isPermanent:
- *           type: "boolean"
+ *           type: "date"         
  *       required:
  *         - driver
  *         - vehicle

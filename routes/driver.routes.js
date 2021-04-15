@@ -32,4 +32,7 @@ router.delete('/driver/:id',  driverController.deactivateDriver); //DEACTIVATE
 router.delete('/driver/:id',  driverController.deleteDriver); //DELETE
 
 
+router.put('/driver/:field/:id', [ md_uploadpictures], driverController.setPicture); //UPDATE IMAGE 
+router.get('/driver/picture/:filename', driverController.getPicture); //RETRIEVE IMAGE 
+
 module.exports = router;

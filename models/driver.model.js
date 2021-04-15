@@ -5,25 +5,12 @@ const validator = require('validator');
 
 const Schema = mongoose.Schema;
 
-var DocumentSchema = new Schema({
-  licenseCard: {
-      type: String,
-      required: true
-  },
-  insuranceCard: {
-      type: String,
-      required: true
-  }
-});
-
 var DocumentComparisonSchema = new Schema({
   licenseCard: {
-      type: String,
-      required: true
+      type: String      
   },
   insuranceCard: {
-      type: String,
-      required: true
+      type: String      
   },
   isOk: {
       type: Boolean,
@@ -37,22 +24,21 @@ const DriverSchema = Schema({
     { 
       type:Boolean,
       default:false
-    },
-    employee:
-      { 
-        type: mongoose.Schema.ObjectId,
-        required: [function () { return !this.isExternal },"Este campo es requerido"] 
-      },     
+    },        
     person:
       { 
         type:mongoose.Schema.ObjectId,
-        required: [function () { return this.isExternal },"Este campo es requerido"] 
+        required: [true,"Este campo es requerido"] 
       },
     company:
       { 
         type:mongoose.Schema.ObjectId,
-        required: [function () { return this.isExternal },"Este campo es requerido"]
+        required: [true,"Este campo es requerido"]
       },
+    employee:
+    {
+      type:mongoose.Schema.ObjectId
+    },
     isActive:
       { 
         type:Boolean,
@@ -63,10 +49,14 @@ const DriverSchema = Schema({
         type:Boolean,
         default:true 
       },
-    documents:
-      { 
-        type:{DocumentSchema} 
-      },
+    licenseCard: {
+        type: String,
+        required: true
+    },
+    insuranceCard: {
+        type: String,
+        required: true
+    },
     documentsComparison:
       { 
         type:{DocumentComparisonSchema} 
@@ -74,21 +64,7 @@ const DriverSchema = Schema({
     
 });
 
-//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
-/**
- * @swagger
- * components:
- *   schemas:
- *     Document:
- *       properties:
- *         licenseCard:
- *           type: "string"
- *         insuranceCard:
- *           type: "string"                 
- *       required:
- *         - licenseCard
- *         - insuranceCard
- */
+
 /**
  * @swagger
  * components:
@@ -101,10 +77,7 @@ const DriverSchema = Schema({
  *           type: "string"                 
  *         isOk:
  *           type: "boolean"
- *       required:
- *         - licenseCard
- *         - insuranceCard
- * 
+ *        
  */
 /**
  * @swagger
@@ -113,24 +86,31 @@ const DriverSchema = Schema({
  *     Driver:
  *       properties:
  *         isExternal:
- *           type: "boolean"
- *         employee:
- *           type: "string"
- *           format: "ObjectId"
+ *           type: "boolean"         
  *         person:
  *           type: "string"
  *           format: "ObjectId"
  *         company:
  *           type: "string"
- *           format: "ObjectId"          
+ *           format: "ObjectId"    
+ *         employee:
+ *           type: "string"  
+ *           format: "ObjectId"     
  *         isActive:
  *           type: "boolean"
  *         isAvailable:
  *           type: "boolean"
- *         documents:
- *           $ref: "#/components/schemas/Document"
+ *         licenseCard:
+ *           type: "string"
+ *         insuranceCard:
+ *           type: "string"
  *         documentsComparison:
- *           $ref: "#/components/schemas/DocumentComparison"          
+ *           $ref: "#/components/schemas/DocumentComparison"  
+ *       required:
+ *         - person
+ *         - licenseCard
+ *         - insuranceCard
+ *               
  *
  */
 

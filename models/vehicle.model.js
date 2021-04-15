@@ -52,11 +52,11 @@ const VehicleSchema = Schema({
   },
   registrationCard: {
     type: String,
-    required: true,
+    required: [true, "Este campo es requerido"],
   },
   insuranceCard: {
     type: String,
-    required: true,
+    required: [true, "Este campo es requerido"],
   },
   owner: {
     type: String,
