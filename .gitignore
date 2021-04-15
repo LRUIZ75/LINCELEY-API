@@ -104,8 +104,10 @@ dist
 .tern-port
 
 # Developer Defined
-/uploads/logos/*.jpg
-/uploads/pictures/*.jpg
+/uploads/logos/
+/uploads/pictures/
+!/upload/logos/README.md
+!/upload/pictures/README.md
 /backups
 /.vscode
 /.vs

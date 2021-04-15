@@ -301,7 +301,7 @@ var assignmentController = {
 
         var query = { '_id': { $eq: id } };
 
-        assignment.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
+        assignmentModel.findOneAndDelete(query, { new: false }, (err, deletedObject) => {
             if (err) {
                 return (res.status(500).send({
                     status: "error",
