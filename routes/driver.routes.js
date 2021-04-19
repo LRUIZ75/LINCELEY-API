@@ -29,7 +29,7 @@ router.get('/driver/:id?', driverController.getDriver); //RETRIEVE
 router.get('/driver',  driverController.getDriver); //RETRIEVE
 
 router.delete('/driver/:id',  driverController.deactivateDriver); //DEACTIVATE
-router.delete('/driver/:id',  driverController.deleteDriver); //DELETE
+//router.delete('/driver/:id',  driverController.deleteDriver); //DELETE
 
 
 router.put('/driver/:field/:id', [ md_uploadpictures], driverController.setPicture); //UPDATE IMAGE 
