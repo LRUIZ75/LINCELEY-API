@@ -80,7 +80,19 @@ var driverController = {
 
         console.log(query);
 
-        driverModel.find(query, (err, objects) => {
+
+/*         findOne({ title: 'Casino Royale' }).
+        populate('author').
+        exec(function (err, story) {
+          if (err) return handleError(err);
+          console.log('The author is %s', story.author.name);
+          // prints "The author is Ian Fleming"
+        }); */
+
+        driverModel.find(query)
+        .populate('person')
+        .populate('company')
+        .exec( function (err, objects) {
 
 
             if (err) {

@@ -27,12 +27,14 @@ const DriverSchema = Schema({
     },        
     person:
       { 
-        type:mongoose.Schema.ObjectId,
+        type: Schema.Types.ObjectId,
+        ref: 'Person',
         required: [true,"Este campo es requerido"] 
       },
     company:
       { 
-        type:mongoose.Schema.ObjectId,
+        type:Schema.Types.ObjectId,
+        ref: 'Company',
         required: [true,"Este campo es requerido"]
       },
     employee:
