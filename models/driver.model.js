@@ -39,7 +39,8 @@ const DriverSchema = Schema({
       },
     employee:
     {
-      type:mongoose.Schema.ObjectId
+      type: Schema.Types.ObjectId,
+      ref: 'Employee'
     },
     isActive:
       { 

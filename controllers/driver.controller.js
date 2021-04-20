@@ -92,7 +92,7 @@ var driverController = {
         driverModel.find(query)
         .populate('person')
         .populate('company')
-        .exec( function (err, objects) {
+        .exec( (err, objects) => {
 
 
             if (err) {

@@ -80,7 +80,9 @@ var departmentController = {
 
         console.log(query);
 
-        departmentModel.find(query, (err, objects) => {
+        departmentModel.find(query)
+        .populate('company')
+        .exec( (err, objects) => {
 
 
             if (err) {

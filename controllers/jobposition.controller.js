@@ -80,7 +80,10 @@ var jobpositionController = {
 
         console.log(query);
 
-        jobpositionModel.find(query, (err, objects) => {
+        jobpositionModel.find(query)
+        .populate('company')
+        .populate('defaultRole')
+        .exec( (err, objects) => {
 
 
             if (err) {
