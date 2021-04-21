@@ -13,6 +13,7 @@ const Schema = mongoose.Schema;
   TRUCK = 'TRUCK',
 } */
 
+
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 const VehicleSchema = Schema({
   plateNumber: {
@@ -34,7 +35,8 @@ const VehicleSchema = Schema({
     default: false,
   },
   company: {
-    type: mongoose.Schema.ObjectId,
+    type: Schema.Types.ObjectId,
+    ref: 'Company',
     required: [
       function () {
         return !this.isExternal;
@@ -59,7 +61,8 @@ const VehicleSchema = Schema({
     required: [true, "Este campo es requerido"],
   },
   owner: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Person',
     description: "Owner",
   },
 });

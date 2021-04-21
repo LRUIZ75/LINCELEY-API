@@ -8,7 +8,8 @@ const Schema = mongoose.Schema;
 //ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!//ToDo: Una vez generado, estos modelos requeren modificación manual para ajustar sus propiedades y validaciones!!!
 const ServiceScheduleSchema = Schema({
   vehicle: {
-    type: mongoose.Schema.ObjectId,
+    type: Schema.Types.ObjectId,
+    ref: 'Vehicle',
     required: [true, "Este campo es requerido"],
   },
   serviceStatus: {

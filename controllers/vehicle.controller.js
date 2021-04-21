@@ -76,32 +76,36 @@ var vehicleController = {
 
     console.log(query);
 
-    vehicleModel.find(query, (err, objects) => {
-      if (err) {
-        return res.status(500).send({
-          status: "error",
-          message: err.message,
-        });
-      }
+    vehicleModel
+      .find(query)
+      .populate('company')
+      .populate('owner')
+      .exec((err, objects) => {
+        if (err) {
+          return res.status(500).send({
+            status: "error",
+            message: err.message,
+          });
+        }
 
-      if (!objects || objects.length == 0) {
-        return res.status(404).send({
-          status: "error",
-          message: "Registro(s) no encontrado(s)",
-          links: [
-            {
-              "Agregar registro => curl -X POST ":
-                global.baseURL + "/api/vehicle",
-            },
-          ],
-        });
-      } else {
-        return res.status(200).send({
-          status: "ok",
-          objects: objects,
-        });
-      }
-    });
+        if (!objects || objects.length == 0) {
+          return res.status(404).send({
+            status: "error",
+            message: "Registro(s) no encontrado(s)",
+            links: [
+              {
+                "Agregar registro => curl -X POST ":
+                  global.baseURL + "/api/vehicle",
+              },
+            ],
+          });
+        } else {
+          return res.status(200).send({
+            status: "ok",
+            objects: objects,
+          });
+        }
+      });
   },
 
   /**
@@ -436,19 +440,19 @@ var vehicleController = {
         status: "error",
         message: "Parámetros de ruta, son incorrectos",
         fieldname,
-        id
+        id,
       });
     }
 
     //TODO: Revisar y controlar los campos válidos para imagenes de la colección
-    var validFields = ["registrationCard","insuranceCard"];
+    var validFields = ["registrationCard", "insuranceCard"];
 
-    if (!(validFields.includes(fieldname))) {
+    if (!validFields.includes(fieldname)) {
       return res.status(400).send({
         status: "error",
         message: "Parámetros de ruta, son incorrectos",
         fieldname,
-        id
+        id,
       });
     }
 

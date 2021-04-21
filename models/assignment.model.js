@@ -9,12 +9,14 @@ const Schema = mongoose.Schema;
 const AssignmentSchema = Schema({
     driver:
       { 
-        type: mongoose.Schema.ObjectId,
+        type: Schema.Types.ObjectId,
+        ref: 'Driver',
         required: [true,"Este campo es requerido"]
       },
     vehicle:
       { 
-        type:mongoose.Schema.ObjectId,
+        type: Schema.Types.ObjectId,
+        ref: 'Vehicle',
         required: [true,"Este campo es requerido"] 
       },
     assignmentDate:
