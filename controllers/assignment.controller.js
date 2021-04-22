@@ -79,7 +79,10 @@ var assignmentController = {
 
     assignmentModel
       .find(query)
-      .populate('driver')
+      .populate({ 
+        path : 'driver',
+        populate : { path : 'person'}
+    })
       .populate('vehicle')
       .exec((err, objects) => {
         if (err) {

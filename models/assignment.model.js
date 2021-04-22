@@ -41,7 +41,8 @@ const AssignmentSchema = Schema({
  *           type: "string"
  *           format: "ObjectId"
  *         assignmentDate:
- *           type: "date"         
+ *           type: "string"
+ *           format: "date"         
  *       required:
  *         - driver
  *         - vehicle
