@@ -153,8 +153,6 @@ app.use('/', rootRoutes);
 
 
 
-// /* Endpoints */
-// require('./src/endpoints')(app);
 
 
 // Exportar módulo (fichero actual)
