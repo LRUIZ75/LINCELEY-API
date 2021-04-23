@@ -58,12 +58,8 @@ const bree = new Bree({
 // handle graceful reloads, pm2 support, and events like SIGHUP, SIGINT, etc.
 const graceful = new Graceful({ brees: [bree] });
 
-
-
-
 mongoose.connect(uriMongoDB, options).then(
   () => {
-
     console.log("\n");
     console.log("INFO: process.env.NODE_ENV = " + process.env.NODE_ENV);
     console.log("INFO: La conexión a la base de datos es correcta!!!");

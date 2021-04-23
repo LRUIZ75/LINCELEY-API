@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 const ServiceScheduleSchema = Schema({
   vehicle: {
     type: Schema.Types.ObjectId,
-    ref: 'Vehicle',
+    ref: "Vehicle",
     required: [true, "Este campo es requerido"],
   },
   serviceStatus: {

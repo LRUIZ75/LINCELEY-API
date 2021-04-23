@@ -77,34 +77,35 @@ var servicescheduleController = {
 
     console.log(query);
 
-    servicescheduleModel.find(query)
-    .populate('vehicle')
-    .exec( (err, objects) => {
-      if (err) {
-        return res.status(500).send({
-          status: "error",
-          message: err.message,
-        });
-      }
+    servicescheduleModel
+      .find(query)
+      .populate("vehicle")
+      .exec((err, objects) => {
+        if (err) {
+          return res.status(500).send({
+            status: "error",
+            message: err.message,
+          });
+        }
 
-      if (!objects || objects.length == 0) {
-        return res.status(404).send({
-          status: "error",
-          message: "Registro(s) no encontrado(s)",
-          links: [
-            {
-              "Agregar registro => curl -X POST ":
-                global.baseURL + "/api/serviceschedule",
-            },
-          ],
-        });
-      } else {
-        return res.status(200).send({
-          status: "ok",
-          objects: objects,
-        });
-      }
-    });
+        if (!objects || objects.length == 0) {
+          return res.status(404).send({
+            status: "error",
+            message: "Registro(s) no encontrado(s)",
+            links: [
+              {
+                "Agregar registro => curl -X POST ":
+                  global.baseURL + "/api/serviceschedule",
+              },
+            ],
+          });
+        } else {
+          return res.status(200).send({
+            status: "ok",
+            objects: objects,
+          });
+        }
+      });
   },
 
   /**

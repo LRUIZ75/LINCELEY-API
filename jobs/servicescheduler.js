@@ -1,6 +1,5 @@
 "use strict";
 
-
 const os = require("os");
 const { parentPort } = require("worker_threads");
 const Cabin = require("cabin");
@@ -34,7 +33,6 @@ mongoose.Promise = global.Promise;
 const servicescheduleModel = require("../models/serviceschedule.model");
 const vehicleModel = require("../models/vehicle.model");
 
-
 //
 // we recommend using Cabin as it is security-focused
 // and you can easily hook in Slack webhooks and more
@@ -48,40 +46,32 @@ let isCancelled = false;
 // how many emails to send at once
 const concurrency = os.cpus().length;
 
-
-
-
 async function checkSchedules() {
   // return early if the job was already cancelled
   if (isCancelled) return;
   try {
-      
     await mongoose.connect(uriMongoDB, options);
 
-    mongoose.connection.on('error', err => {
-        logger.error(err);
-        isCancelled = true;
-        return;
-      });
+    mongoose.connection.on("error", (err) => {
+      logger.error(err);
+      isCancelled = true;
+      return;
+    });
 
-    const query = { 'isActive': { $eq: 'true' } };
+    const query = { isActive: { $eq: "true" } };
 
     const schedules = await servicescheduleModel
       .find(query)
-      .populate('vehicle');
+      .populate("vehicle");
 
     console.log(schedules);
 
     var response = 0;
     return response;
   } catch (err) {
-    // catch the error so if one email fails they all don't fail
     logger.error(err);
   }
-
 }
-
-
 
 // handle cancellation (this is a very simple example)
 if (parentPort)
