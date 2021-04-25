@@ -31,7 +31,7 @@ const ServiceScheduleSchema = Schema({
     description: "duration of status",
     validate: {
       validator: function (v) {
-        return /^[0-9]+[hdwmy]{1}$/.test(v);
+        return /^[0-9]+[dwMy]{1}$/.test(v);
       },
       message: "Invalid term",
     },
@@ -43,7 +43,7 @@ const ServiceScheduleSchema = Schema({
     default: "0d",
     validate: {
       validator: function (v) {
-        return /^[0-9]+[dwmy]{1}$/.test(v);
+        return /^[0-9]+[dwMy]{1}$/.test(v);
       },
       message: "Invalid repeat interval",
     },

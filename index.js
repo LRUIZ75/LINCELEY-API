@@ -46,7 +46,7 @@ const Cabin = require("cabin");
 const Bree = require("bree");
 
 const bree = new Bree({
-  logger: new Cabin(),
+  logger: new Cabin(), 
   jobs: [
     {
       name: "servicescheduler",
